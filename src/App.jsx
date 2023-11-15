@@ -1,14 +1,16 @@
-import LoginPage from "./pages/LoginPage";
+
 import './App.css'
+import Router from "./routes/Router";
+
 
 function App() {
   
 
   return (
-    <>
-      <LoginPage />
-    </>
+    <Router/>
   )
+      
+ 
 }
 
 export default App
