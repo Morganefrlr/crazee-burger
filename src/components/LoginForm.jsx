@@ -81,6 +81,7 @@ const InputNameStyled = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  background-color: ${theme.colors.white};
 
   .userIcon {
     fill: ${theme.colors.greyBlue};
