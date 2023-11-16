@@ -32,7 +32,7 @@ const LoginForm = () => {
           />
         </InputNameStyled>
         <ButtonStyled>
-          Accédez à votre espace
+          Accédez à mon espace
           <IoIosArrowForward className="arrowIcon" />
         </ButtonStyled>
       </div>

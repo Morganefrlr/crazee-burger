@@ -6,7 +6,7 @@ import back from "../assets/F03-burger-background.jpg";
 const LoginPage = () => {
   return (
     <LoginPageStyled>
-      <div className="Back">
+      <div className="filterDiv">
         <Logo />
         <LoginForm />
       </div>
@@ -19,7 +19,7 @@ const LoginPageStyled = styled.div`
   width: 100vw;
   height: 100vh;
   background-size: cover;
-  .Back {
+  .filterDiv{
     display: flex;
     flex-direction: column;
     gap: 40px;
