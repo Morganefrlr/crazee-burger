@@ -1,4 +1,3 @@
-//import logo from "../assets/F03-logo-orange.png";
 import styled from "styled-components";
 import { theme } from "../../../theme/index";
 
