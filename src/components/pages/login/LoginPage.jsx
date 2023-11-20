@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <LoginPageStyled>
       <div className="filterDiv">
-        <Logo />
+        <div className="logo"><Logo/></div>
         <LoginForm />
       </div>
     </LoginPageStyled>
@@ -22,12 +22,15 @@ const LoginPageStyled = styled.div`
   .filterDiv {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 100px;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
     background-color: #000000a7;
+    .logo{
+      transform: scale(2.5);
+    }
   }
 `;
 
