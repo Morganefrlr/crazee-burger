@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const OrderPage = () => {
   const params = useParams();
@@ -12,6 +13,8 @@ const OrderPage = () => {
     <div>
       <h1>Bonjour {name}</h1>
       <button onClick={handleClick}>Déconnexion</button>
+      <Navbar />
+      <div>main</div>
     </div>
   );
 };
