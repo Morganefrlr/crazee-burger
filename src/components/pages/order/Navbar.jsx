@@ -1,11 +1,24 @@
-import React from 'react';
+import React from "react";
+import Logo from "../login/Logo";
 
-const Navbar = () => {
-    return (
+import { PiUserCircleFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
+
+const Navbar = ({name}) => {
+  return (
+    <div>
+      <div>
+        <Logo />
+      </div>
+      <div>
         <div>
-            hello je suis la navbar
+            <span>Hey, {name}</span>
+            <Link href="/"><button>Se déconnecter</button></Link>
         </div>
-    );
+        <PiUserCircleFill className="inputIcon" />
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;
