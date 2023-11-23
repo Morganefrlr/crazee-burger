@@ -34,7 +34,11 @@ const LoginForm = () => {
           type="text"
           placeholder="Entrez votre prénom..."
         />
-        <ButtonOrange icon={<IoIosArrowForward className="btnIcon" />} />
+        <ButtonOrange 
+          icon={<IoIosArrowForward className="btnIcon" />}
+          label={'Accédez à mon espace'}
+          className={'buttonLogin'}
+        />
       </div>
     </FormLoginStyled>
   );
@@ -49,7 +53,7 @@ const FormLoginStyled = styled.form`
   h3 {
     font-family: "Amatic SC", sans-serif;
     color: ${theme.colors.white};
-    font-weight: ${theme.weights.bold};
+    font-weight: ${theme.fonts.weights.bold};
   }
   h2 {
     font-size: 48px;
@@ -70,6 +74,11 @@ const FormLoginStyled = styled.form`
     flex-direction: column;
     gap: 18px;
     align-items: center;
+
+    .buttonLogin{
+      height: 53px;
+      font-size: 15px;
+    }
   }
 `;
 

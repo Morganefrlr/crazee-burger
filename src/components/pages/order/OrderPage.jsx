@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import Menu from "./Menu";
 
 const OrderPage = () => {
   const params = useParams();
@@ -10,7 +11,7 @@ const OrderPage = () => {
   return (
     <OrderMainStyled>
       <Navbar name={name} />
-      <div className="main">main</div>
+      <Menu/>
     </OrderMainStyled>
   );
 };
@@ -22,14 +23,6 @@ const OrderMainStyled = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .main {
-    width: 1400px;
-    height: 100%;
-    background-color: #f5f5f7;
-    box-shadow: 0 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-    border-radius: 0 0 15px 15px;
-    margin-bottom: 25px;
-  }
 `;
 
 export default OrderPage;
