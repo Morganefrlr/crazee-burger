@@ -2,17 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-const ButtonOrange = ({ icon }) => {
+const ButtonOrange = ({ icon, label, className }) => {
   return (
-    <ButtonStyled>
-      <span>Accédez à mon espace</span>
+    <ButtonStyled className={className}>
+      <span>{label}</span>
       {icon && icon}
     </ButtonStyled>
   );
 };
 
 const ButtonStyled = styled.button`
-  height: 53px;
   width: 100%;
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
