@@ -2,19 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import ButtonOrange from "./ButtonOrange";
 import { fakeMenu1 } from "../../utils/Data";
-import { theme } from "../../theme";
 import Price from "../pages/order/Price";
 
-const Card = () => {
-  const menu = fakeMenu1.filter((el) => el.id === 1);
+const Card = ({menu}) => {
+  
 
   return (
     <CardStyled>
-        <img src={menu[0].imageSource} alt="" />
+        <img src={menu.imageSource} alt="" />
       <div className="cardBottom">
-        <h3>{menu[0].title}</h3>
+        <h3>{menu.title}</h3>
         <div className="cardPrice">
-          <Price price={menu[0].price}/>
+          <Price price={menu.price}/>
           <ButtonOrange
           label={'Ajouter'}
           className={'buttonCard'}
@@ -55,12 +54,6 @@ const CardStyled = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      p{
-        flex: 1;
-        font-size: 16px;
-        color: ${theme.colors.primary};
-        text-align: left;
-      }
       .buttonCard{
         flex:1; 
         height: 38px;

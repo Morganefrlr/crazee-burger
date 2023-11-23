@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Card from '../../reusable/Card';
+import { fakeMenu2 } from '../../../utils/Data';
 
 const Menu = () => {
     return (
         <MenuStyled>
-            <Card/>
+            {fakeMenu2.map(item =>
+               <Card key={item.id} menu={item}/>
+            )}
         </MenuStyled>
     );
 };
