@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Card from '../../reusable/Card';
 import { fakeMenu2 } from '../../../utils/Data';
 
+
 const Menu = () => {
     return (
         <MenuStyled>
@@ -21,6 +22,11 @@ const MenuStyled = styled.div`
     box-shadow: 0 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
     border-radius: 0 0 15px 15px;
     margin-bottom: 25px;
+    padding: 50px 85px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 60px 85px ; 
+    overflow: scroll;
 `
 
 export default Menu;
