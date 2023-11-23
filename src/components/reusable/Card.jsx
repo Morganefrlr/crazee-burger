@@ -3,17 +3,18 @@ import styled from "styled-components";
 import ButtonOrange from "./ButtonOrange";
 import { fakeMenu1 } from "../../utils/Data";
 import { theme } from "../../theme";
+import Price from "../pages/order/Price";
 
 const Card = () => {
   const menu = fakeMenu1.filter((el) => el.id === 1);
-  console.log(Math.round(menu[0].price * 100)/100);
+
   return (
     <CardStyled>
         <img src={menu[0].imageSource} alt="" />
       <div className="cardBottom">
         <h3>{menu[0].title}</h3>
         <div className="cardPrice">
-          <p>{Math.round(menu[0].price * 100)/100}0 €</p>
+          <Price price={menu[0].price}/>
           <ButtonOrange
           label={'Ajouter'}
           className={'buttonCard'}
