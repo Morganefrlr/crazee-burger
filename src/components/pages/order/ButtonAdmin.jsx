@@ -1,17 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../theme/index";
+import { toast} from 'react-toastify';
 
 const ButtonAdmin = () => {
   const [admin, setAdmin] = useState(false);
+  
+  const handleButton = () =>{
+    setAdmin(!admin)
+    if(!admin){
+      toast.info('Mode admin activé',{
+        closeOnClick: true,
+      })
+      
+    }
+  }
+
 
   return (
-    <ButtonAdminStyled className={admin && 'backButton'}>
-      <p className={admin ? "adminLabelTrue" : "adminLabelFalse"}>{admin ? "Activer le mode admin" : "Désactiver le mode admin"}</p>
+    <ButtonAdminStyled className={!admin && 'backButton'}>
+      <p className={admin ? "adminLabelFalse" : "  adminLabelTrue"}>{admin ? "Désactiver le mode admin" : "Activer le mode admin"}</p>
       <div
-        onClick={() => setAdmin(!admin)}
-        className={admin ? "adminBtnTrue" : "adminBtnFalse"}
+        onClick={handleButton}
+        className={admin ? "adminBtnFalse" : "adminBtnTrue"}
       />
+
     </ButtonAdminStyled>
   );
 };
