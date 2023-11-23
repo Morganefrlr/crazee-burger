@@ -1,7 +1,6 @@
-import React from "react";
+
 import styled from "styled-components";
 import ButtonOrange from "./ButtonOrange";
-import { fakeMenu1 } from "../../utils/Data";
 import Price from "../pages/order/Price";
 
 const Card = ({menu}) => {
@@ -12,7 +11,7 @@ const Card = ({menu}) => {
         <img src={menu.imageSource} alt="" />
       <div className="cardBottom">
         <h3>{menu.title}</h3>
-        <div className="cardPrice">
+        <div>
           <Price price={menu.price}/>
           <ButtonOrange
           label={'Ajouter'}

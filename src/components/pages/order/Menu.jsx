@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styled from 'styled-components';
 import Card from '../../reusable/Card';
 import { fakeMenu2 } from '../../../utils/Data';
@@ -27,6 +27,11 @@ const MenuStyled = styled.div`
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 60px 85px ; 
     overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+        
+    }
+
 `
 
 export default Menu;
