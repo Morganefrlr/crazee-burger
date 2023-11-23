@@ -1,30 +1,29 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../theme/index";
-import { toast} from 'react-toastify';
+import { toast } from "react-toastify";
 
 const ButtonAdmin = () => {
   const [admin, setAdmin] = useState(false);
-  
-  const handleButton = () =>{
-    setAdmin(!admin)
-    if(!admin){
-      toast.info('Mode admin activé',{
-        closeOnClick: true,
-      })
-      
-    }
-  }
 
+  const handleButton = () => {
+    setAdmin(!admin);
+    if (!admin) {
+      toast.info("Mode admin activé", {
+        closeOnClick: true,
+      });
+    }
+  };
 
   return (
-    <ButtonAdminStyled className={!admin && 'backButton'}>
-      <p className={admin ? "adminLabelFalse" : "  adminLabelTrue"}>{admin ? "Désactiver le mode admin" : "Activer le mode admin"}</p>
+    <ButtonAdminStyled className={!admin && "backButton"}>
+      <p className={admin ? "adminLabelFalse" : "  adminLabelTrue"}>
+        {admin ? "Désactiver le mode admin" : "Activer le mode admin"}
+      </p>
       <div
         onClick={handleButton}
         className={admin ? "adminBtnFalse" : "adminBtnTrue"}
       />
-
     </ButtonAdminStyled>
   );
 };
@@ -41,23 +40,24 @@ const ButtonAdminStyled = styled.div`
   align-items: center;
   position: relative;
   transition: all 700ms ease;
-  &.backButton{
+  &.backButton {
     background-color: ${theme.colors.background_dark};
     border-color: inherit;
   }
-  p{
+  p {
     position: absolute;
     top: 12px;
     transition: all 700ms ease;
+    &.adminLabelTrue {
+      left: 50px;
+      font-weight: 700;
+      color: ${theme.colors.primary};
+    }
+    &.adminLabelFalse {
+      left: 10px;
+    }
   }
-  .adminLabelTrue {
-    left: 50px;
-    font-weight: 700;
-    color: ${theme.colors.primary};
-  }
-  .adminLabelFalse {
-    left: 10px;
-  }
+
   div {
     width: 30px;
     height: 30px;
@@ -67,12 +67,12 @@ const ButtonAdminStyled = styled.div`
     position: absolute;
     transition: all 700ms ease;
     top: 3px;
-  }
-  .adminBtnTrue {
-    left: 4px;
-  }
-  .adminBtnFalse {
-    left: 162px;
+    &.adminBtnTrue {
+      left: 4px;
+    }
+    &.adminBtnFalse {
+      left: 162px;
+    }
   }
 `;
 export default ButtonAdmin;
