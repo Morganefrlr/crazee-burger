@@ -5,10 +5,10 @@ import { theme } from "../../../theme";
 const Price = ({price}) => {
 
    const newPrice = (price) =>{
-    let priceRound =  Math.round(price * 100) /100
-    return `${priceRound}`.replace(".", ",") + "0"
+    let priceRound =   parseFloat(price).toFixed(2)
+    return `${priceRound}`.replace(".", ",") 
    }
-    
+
     return (
         <PriceStyled>{newPrice(price)} €</PriceStyled>
     );
