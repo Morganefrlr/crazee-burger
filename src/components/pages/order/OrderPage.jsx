@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import Menu from "./Menu";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OrderPage = () => {
   const params = useParams();
@@ -12,6 +14,7 @@ const OrderPage = () => {
     <OrderMainStyled>
       <Navbar name={name} />
       <Menu/>
+      <ToastContainer position="bottom-right" theme="dark" autoClose={1500}/>
     </OrderMainStyled>
   );
 };

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { theme } from "../../../theme";
 import Logo from "../login/Logo";
-import User from "./User";
+import RightSide from "./RightSide";
 
 const Navbar = ({ name }) => {
   const handleClick = () => {
@@ -14,7 +14,7 @@ const Navbar = ({ name }) => {
       <div onClick={handleClick} className="navLinkLogo">
         <Logo />
       </div>
-      <User name={name} />
+      <RightSide name={name}/>
     </NavbarStyled>
   );
 };
