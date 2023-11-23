@@ -49,7 +49,7 @@ const FormLoginStyled = styled.form`
   h3 {
     font-family: "Amatic SC", sans-serif;
     color: ${theme.colors.white};
-    font-weight: ${theme.weights.bold};
+    font-weight: ${theme.fonts.weights.bold};
   }
   h2 {
     font-size: 48px;

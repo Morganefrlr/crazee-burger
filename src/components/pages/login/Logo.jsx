@@ -22,7 +22,7 @@ const DivLogoStyled = styled.div`
   h1 {
     font-family: "Amatic SC", sans-serif;
     font-size: 36px;
-    font-weight: ${theme.weights.bold};
+    font-weight: ${theme.fonts.weights.bold};
     text-transform: uppercase;
   }
   img {
