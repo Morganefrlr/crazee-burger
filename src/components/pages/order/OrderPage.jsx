@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import { theme } from "../../../theme";
-import Menu from "./Menu";
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Main from "./Main/Main";
 
 const OrderPage = () => {
   const params = useParams();
@@ -13,8 +13,8 @@ const OrderPage = () => {
   return (
     <OrderMainStyled>
       <Navbar name={name} />
-      <Menu/>
-      <ToastContainer position="bottom-right" theme="dark" autoClose={1500}/>
+      <Main />
+      <ToastContainer position="bottom-right" theme="dark" autoClose={1500} />
     </OrderMainStyled>
   );
 };
@@ -25,7 +25,6 @@ const OrderMainStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
 `;
 
 export default OrderPage;
