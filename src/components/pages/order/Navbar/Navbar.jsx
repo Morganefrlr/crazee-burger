@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { theme } from "../../../theme";
-import Logo from "../login/Logo";
+import { theme } from "../../../../theme";
+import Logo from "../../login/Logo";
 import RightSide from "./RightSide";
 
 const Navbar = ({ name }) => {
@@ -14,7 +14,7 @@ const Navbar = ({ name }) => {
       <div onClick={handleClick} className="navLinkLogo">
         <Logo />
       </div>
-      <RightSide name={name}/>
+      <RightSide name={name} />
     </NavbarStyled>
   );
 };
@@ -29,6 +29,7 @@ const NavbarStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 70px 0 20px;
+  border-bottom: 1px solid #8a8a8a69;
 
   .navLinkLogo {
     cursor: pointer;

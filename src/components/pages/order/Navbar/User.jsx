@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PiUserCircleFill } from "react-icons/pi";
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 
 const User = ({ name }) => {
   return (
