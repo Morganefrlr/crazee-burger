@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ButtonOrange from "../../../reusable/ButtonOrange";
-import Price from "../Main/Price";
+import ButtonOrange from "../../../../reusable/ButtonOrange";
+import Price from "./Price";
 
 const Card = ({ img, title, price }) => {
   return (

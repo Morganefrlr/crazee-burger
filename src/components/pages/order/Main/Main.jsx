@@ -1,10 +1,16 @@
 import styled from "styled-components";
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
+import Admin from "./Admin/Admin";
 
 const Main = () => {
   return (
     <MainStyled>
-      <Menu />
+      <div className="test"></div>
+      <div className="container_MenuAdmin">
+        <Menu />
+        <Admin/>
+      </div>
+      
     </MainStyled>
   );
 };
@@ -17,8 +23,25 @@ const MainStyled = styled.div`
   border-radius: 0 0 15px 15px;
   margin-bottom: 25px;
   overflow: scroll;
+  display: flex;
   &::-webkit-scrollbar {
     display: none;
+  }
+  .container_MenuAdmin{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+
+
+
+
+
+
+  .test{
+    background-color: aquamarine;
   }
 `;
 
