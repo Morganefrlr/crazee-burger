@@ -5,7 +5,7 @@ import Admin from "./Admin/Admin";
 const Main = () => {
   return (
     <MainStyled>
-      <div className="test"></div>
+      <div className="cart">test</div>
       <div className="container_MenuAdmin">
         <Menu />
         <Admin/>
@@ -30,6 +30,8 @@ const MainStyled = styled.div`
   .container_MenuAdmin{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    position: relative;
   }
 
 
@@ -38,10 +40,9 @@ const MainStyled = styled.div`
 
 
 
-
-
-  .test{
-    background-color: aquamarine;
+  
+  .cart{
+    display: none;
   }
 `;
 

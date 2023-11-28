@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ButtonOrange from "../../../../reusable/ButtonOrange";
 import Price from "./Price";
+import { theme } from "../../../../../theme";
 
 const Card = ({ img, title, price }) => {
   return (
@@ -21,6 +22,7 @@ const CardStyled = styled.div`
   width: 240px;
   height: 330px;
   border-radius: 15px;
+  background: ${theme.colors.white};
   box-shadow: -8px 8px 20px 0 rgb(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
