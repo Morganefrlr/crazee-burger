@@ -3,23 +3,34 @@ import styled from "styled-components";
 import AdminContext from "../../../../../context/AdminContext";
 import { useContext } from "react";
 
-const Tab = ({ iconDown, iconUp, icon, label, onClick }) => {
-  const { setOpenEdit, openEdit } = useContext(AdminContext);
+const Tab = ({
+  iconDown,
+  iconUp,
+  icon,
+  label,
+  id,
+  openEditProduct,
+  openAddProduct,
+}) => {
+  const { setOpenEdit, openEdit, setOpenAddProduct, setOpenEditProduct } =
+    useContext(AdminContext);
 
-
-  const handleClick = (onClick) => {
-
-    if(onClick === 'arrow'){
-        setOpenEdit(!openEdit);
+  const handleClick = (id) => {
+    if (id === "arrow") {
+      setOpenEdit(!openEdit);
+      console.log(openEdit, id)
     }
-    if(onClick === 'add' || onClick === 'edit' )
-    setOpenEdit(true);
-
+    if (id === "add" || id === "edit") {
+      setOpenEdit(true);
+      
+      console.log("edit: " + openEditProduct);
+      console.log("add: " + openAddProduct);
+    }
   };
 
-console.log()
+  console.log();
   return (
-    <TabStyled onClick={() => handleClick(onClick)}>
+    <TabStyled onClick={() => handleClick(id)}>
       {openEdit ? iconDown : iconUp}
       {icon}
       {label && <p>{label}</p>}
@@ -37,7 +48,7 @@ const TabStyled = styled.button`
   border-bottom: 2px solid ${theme.colors.greyLight};
   box-shadow: 0px -6px 8px -2px #0000001a;
   color: ${theme.colors.greySemiDark};
-  gap:13px;
+  gap: 13px;
   cursor: pointer;
   &:focus {
     background-color: ${theme.colors.background_dark};
@@ -46,10 +57,10 @@ const TabStyled = styled.button`
   .icon {
     font-size: larger;
   }
-  p{
+  p {
     text-transform: capitalize;
-    &:hover{
-        text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
     }
   }
 `;

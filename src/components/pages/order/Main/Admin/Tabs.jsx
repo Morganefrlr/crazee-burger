@@ -8,10 +8,15 @@ const Tabs = () => {
 
     return (
         <TabsStyled>
-            <Tab iconDown={<FiChevronDown className='icon' />} iconUp={<FiChevronUp className='icon' />} onClick={'arrow'}/>
+            <Tab iconDown={<FiChevronDown className='icon' />} iconUp={<FiChevronUp className='icon' />} id={'arrow'}/>
             {tabsData.map((item) => {
                 return (
-                    <Tab label={item.label} icon={item.icon} key={item.id} onClick={item.id}/>
+                    <Tab label={item.label} 
+                    icon={item.icon} 
+                    key={item.id} 
+                    id={item.id} 
+                    openAddProduct={item.openAddProduct}
+                    openEditProduct={item.openEditProduct}/>
                 )
             })}
         </TabsStyled>

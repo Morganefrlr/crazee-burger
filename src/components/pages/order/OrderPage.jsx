@@ -13,9 +13,11 @@ const OrderPage = () => {
   const params = useParams();
   const name = params.id;
   const [openEdit, setOpenEdit] = useState(false)
+  const [openAddProduct,  setOpenAddProduct] = useState(false)
+  const [openEditProduct, setOpenEditProduct] = useState(false)
   
   const test = {
-    setOpenEdit,openEdit
+    setOpenEdit,openEdit,openAddProduct, setOpenAddProduct, openEditProduct,setOpenEditProduct
   }
   return (
     <OrderMainStyled>
