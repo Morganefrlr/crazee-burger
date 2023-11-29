@@ -12,13 +12,18 @@ import { useState } from "react";
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
+  const [adminMode, setAdminMode] = useState(false)
   const [openEdit, setOpenEdit] = useState(false)
-  const [openAddProduct,  setOpenAddProduct] = useState(false)
+  const [openAddProduct,  setOpenAddProduct] = useState(true)
   const [openEditProduct, setOpenEditProduct] = useState(false)
   
-  const test = {
+  
+
+
+  const test = {adminMode, setAdminMode,
     setOpenEdit,openEdit,openAddProduct, setOpenAddProduct, openEditProduct,setOpenEditProduct
   }
+
   return (
     <OrderMainStyled>
       <AdminContext.Provider value={test}>
@@ -29,6 +34,10 @@ const OrderPage = () => {
     </OrderMainStyled>
   );
 };
+
+
+
+
 const OrderMainStyled = styled.div`
   width: 100vw;
   height: 100vh;

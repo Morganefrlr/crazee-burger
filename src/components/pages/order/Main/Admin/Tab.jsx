@@ -1,7 +1,7 @@
 import { theme } from "../../../../../theme";
 import styled from "styled-components";
 import AdminContext from "../../../../../context/AdminContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const Tab = ({
   iconDown,
@@ -15,22 +15,31 @@ const Tab = ({
   const { setOpenEdit, openEdit, setOpenAddProduct, setOpenEditProduct } =
     useContext(AdminContext);
 
+    const [className, setClassName] = useState("")
   const handleClick = (id) => {
     if (id === "arrow") {
       setOpenEdit(!openEdit);
-      console.log(openEdit, id)
-    }
-    if (id === "add" || id === "edit") {
-      setOpenEdit(true);
       
-      console.log("edit: " + openEditProduct);
-      console.log("add: " + openAddProduct);
+
     }
+    if (id === "add") {
+      setOpenEdit(true);
+      setOpenAddProduct(openAddProduct)
+      setOpenEditProduct(openEditProduct)
+
+    }
+    if(id === "edit"){
+      setOpenEdit(true);
+      setOpenAddProduct(openAddProduct)
+      setOpenEditProduct(openEditProduct)
+
+    }
+    setClassName("")
   };
 
   console.log();
   return (
-    <TabStyled onClick={() => handleClick(id)}>
+    <TabStyled onClick={() => handleClick(id)} >
       {openEdit ? iconDown : iconUp}
       {icon}
       {label && <p>{label}</p>}
@@ -62,6 +71,9 @@ const TabStyled = styled.button`
     &:hover {
       text-decoration: underline;
     }
+  }
+  &.isActive{
+      background-color: aquamarine;
   }
 `;
 export default Tab;

@@ -8,6 +8,7 @@ export const tabsData = [
     openAddProduct: true,
     openEditProduct: false,
     icon:<AiOutlinePlus/> ,
+    className: "isActive",
   },
   {
     id: "edit",
@@ -15,5 +16,6 @@ export const tabsData = [
     openAddProduct: false,
     openEditProduct: true,
     icon : <MdModeEditOutline/> ,
+    className: "isActive",
   },
 ];

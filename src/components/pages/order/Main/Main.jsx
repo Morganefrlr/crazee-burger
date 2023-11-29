@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
+import { useContext } from "react";
+import AdminContext from "../../../../context/AdminContext";
 
 const Main = () => {
+  const {adminMode} = useContext(AdminContext)
   return (
     <MainStyled>
       <div className="cart">test</div>
       <div className="container_MenuAdmin">
         <Menu />
+        {adminMode && 
         <Admin/>
+        }
+        
       </div>
       
     </MainStyled>

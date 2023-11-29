@@ -3,17 +3,22 @@ import User from "../Navbar/User";
 import styled from "styled-components";
 import ToggleButton from "../../../reusable/ToggleButton";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AdminContext from "../../../../context/AdminContext";
 
 const RightSide = ({ name }) => {
-  const [adminMode, setAdminMode] = useState(false);
+  const [adminModeBtn, setAdminModeBtn] = useState(false);
+  const{setAdminMode} = useContext(AdminContext)
 
   const displayToast = () => {
-    setAdminMode(!adminMode);
-    if (!adminMode) {
+    setAdminModeBtn(!adminModeBtn);
+    if (!adminModeBtn) {
       toast.info("Mode admin activé", {
         closeOnClick: true,
       });
+      setAdminMode(true)
+    } else{
+      setAdminMode(false)
     }
   };
   return (

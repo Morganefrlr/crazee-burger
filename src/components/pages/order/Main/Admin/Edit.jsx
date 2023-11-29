@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import AdminContext from "../../../../../context/AdminContext";
+
+
+
 const Edit = () => {
-  return <EditStyled>edit</EditStyled>;
+const {openAddProduct , openEditProduct} = useContext(AdminContext)
+
+
+  return <EditStyled>
+    {openEditProduct && 
+    <p>Modifier un produit</p>
+    }
+    {openAddProduct && 
+    <p>Ajouter un Produit</p>
+    }
+  </EditStyled>;
 };
 
 const EditStyled = styled.div`
