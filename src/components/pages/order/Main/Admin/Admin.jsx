@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Tabs from './Tabs';
 import Edit from './Edit';
+import AdminContext from '../../../../../context/AdminContext';
 
 
 const Admin = () => {
+const {openEdit} = useContext(AdminContext)
+
     return (
         <AdminStyled>
             <Tabs/>
-            <Edit/>
+            {openEdit && <Edit/>}
         </AdminStyled>
     );
 };

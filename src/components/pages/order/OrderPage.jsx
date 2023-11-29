@@ -6,15 +6,24 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
 
+import AdminContext from "../../../context/AdminContext";
+import { useState } from "react";
+
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
-
+  const [openEdit, setOpenEdit] = useState(false)
+  
+  const test = {
+    setOpenEdit,openEdit
+  }
   return (
     <OrderMainStyled>
-      <Navbar name={name} />
-      <Main />
-      <ToastContainer position="bottom-right" theme="dark" autoClose={1500} />
+      <AdminContext.Provider value={test}>
+        <Navbar name={name} />
+        <Main />
+        <ToastContainer position="bottom-right" theme="dark" autoClose={1500} />
+      </AdminContext.Provider>
     </OrderMainStyled>
   );
 };

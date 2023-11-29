@@ -1,39 +1,56 @@
-import {FiChevronDown} from 'react-icons/fi'
-import { theme } from '../../../../../theme';
-import styled from 'styled-components';
+import { theme } from "../../../../../theme";
+import styled from "styled-components";
+import AdminContext from "../../../../../context/AdminContext";
+import { useContext } from "react";
+
+const Tab = ({ iconDown, iconUp, icon, label, onClick }) => {
+  const { setOpenEdit, openEdit } = useContext(AdminContext);
 
 
-const Tab = () => {
-    return (
-        
-            <TabStyled>
-                <FiChevronDown className='icon'/>
-            </TabStyled>
-     
-    );
+  const handleClick = (onClick) => {
+
+    if(onClick === 'arrow'){
+        setOpenEdit(!openEdit);
+    }
+    if(onClick === 'add' || onClick === 'edit' )
+    setOpenEdit(true);
+
+  };
+
+console.log()
+  return (
+    <TabStyled onClick={() => handleClick(onClick)}>
+      {openEdit ? iconDown : iconUp}
+      {icon}
+      {label && <p>{label}</p>}
+    </TabStyled>
+  );
 };
 
 const TabStyled = styled.button`
-        padding: 20px;
-        background-color: ${theme.colors.white};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius:5px ; 
-        border : 1px solid ${theme.colors.greyLight};
-        border-bottom: 2px solid ${theme.colors.greyLight};
-        box-shadow: 0px -6px 8px -2px #0000001a;
-        color: ${theme.colors.greySemiDark};
-        cursor: pointer;
-        &:hover{
-            background-color: ${theme.colors.background_dark};
-            border: ${theme.colors.background_dark};
-        }
-        .icon{
-             font-size: larger;
-        }
-
-   
-
-`
+  padding: 20px;
+  background-color: ${theme.colors.white};
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid ${theme.colors.greyLight};
+  border-bottom: 2px solid ${theme.colors.greyLight};
+  box-shadow: 0px -6px 8px -2px #0000001a;
+  color: ${theme.colors.greySemiDark};
+  gap:13px;
+  cursor: pointer;
+  &:focus {
+    background-color: ${theme.colors.background_dark};
+    border: ${theme.colors.background_dark};
+  }
+  .icon {
+    font-size: larger;
+  }
+  p{
+    text-transform: capitalize;
+    &:hover{
+        text-decoration: underline;
+    }
+  }
+`;
 export default Tab;
