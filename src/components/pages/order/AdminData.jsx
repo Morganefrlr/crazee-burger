@@ -1,21 +1,26 @@
+
 import {AiOutlinePlus} from 'react-icons/ai'
 import {MdModeEditOutline} from 'react-icons/md'
 
-export const tabsData = [
+
+  
+
+export const tabsData = (tabSelected) => [
   {
     id: "add",
     label: "Ajouter un produit",
-    openAddProduct: true,
-    openEditProduct: false,
     icon:<AiOutlinePlus/> ,
-    className: "isActive",
+    className: tabSelected === 'add' ? 'isActive':'',
   },
   {
     id: "edit",
     label: "Modifier un produit",
-    openAddProduct: false,
-    openEditProduct: true,
     icon : <MdModeEditOutline/> ,
-    className: "isActive",
+    className: tabSelected === 'edit' ? 'isActive' : '',
+    
   },
 ];
+
+
+
+

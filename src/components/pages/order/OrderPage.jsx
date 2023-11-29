@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import { theme } from "../../../theme";
@@ -9,24 +9,40 @@ import Main from "./Main/Main";
 import AdminContext from "../../../context/AdminContext";
 import { useState } from "react";
 
+
+
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
+  
   const [adminMode, setAdminMode] = useState(false)
-  const [openEdit, setOpenEdit] = useState(false)
+  const [openAdminPanel, setOpenAdminPanel] = useState(false)
   const [openAddProduct,  setOpenAddProduct] = useState(true)
   const [openEditProduct, setOpenEditProduct] = useState(false)
-  
+  const [tabSelected, setTabSelected] = useState('add')
+
   
 
-
-  const test = {adminMode, setAdminMode,
-    setOpenEdit,openEdit,openAddProduct, setOpenAddProduct, openEditProduct,setOpenEditProduct
+  const adminProviderValue = {
+    adminMode,  
+    setAdminMode, 
+    openAdminPanel,
+    setOpenAdminPanel,
+    openAddProduct, 
+    setOpenAddProduct, 
+    openEditProduct,
+    setOpenEditProduct,
+    tabSelected,
+    setTabSelected
   }
 
+
+
+
+  
   return (
     <OrderMainStyled>
-      <AdminContext.Provider value={test}>
+      <AdminContext.Provider value={adminProviderValue}>
         <Navbar name={name} />
         <Main />
         <ToastContainer position="bottom-right" theme="dark" autoClose={1500} />

@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import Tabs from './Tabs';
 import Edit from './Edit';
 import AdminContext from '../../../../../context/AdminContext';
-import { tabsData } from '../../AdminData';
+
 
 const Admin = () => {
-const {openEdit } = useContext(AdminContext)
+
+
+const {openAdminPanel} = useContext(AdminContext)
 
     return (
         <AdminStyled>
             <Tabs/>
-            {openEdit &&
+            {openAdminPanel &&
                 <Edit />
             }
         </AdminStyled>

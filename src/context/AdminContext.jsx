@@ -4,12 +4,17 @@ export default createContext ({
     adminMode: false,
     setAdminMode: () => {},
 
-    openEdit: false,
-    setOpenEdit: () => {},
+    openAdminPanel: false,
+    setOpenAdminPanel: () => {},
+
+
 
     openAddProduct: true,
     setOpenAddProduct: () => {},
 
     openEditProduct:false,
     setOpenEditProduct: () => {},
+
+    tabSelected:'add',
+    setTabSelected: () =>{},
 })

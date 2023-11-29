@@ -1,7 +1,8 @@
 import { theme } from "../../../../../theme";
 import styled from "styled-components";
 import AdminContext from "../../../../../context/AdminContext";
-import { useContext, useState } from "react";
+import { useContext} from "react";
+
 
 const Tab = ({
   iconDown,
@@ -9,43 +10,60 @@ const Tab = ({
   icon,
   label,
   id,
-  openEditProduct,
-  openAddProduct,
+  className
 }) => {
-  const { setOpenEdit, openEdit, setOpenAddProduct, setOpenEditProduct } =
-    useContext(AdminContext);
 
-    const [className, setClassName] = useState("")
+
+  const {
+    openAdminPanel,
+    setOpenAdminPanel,
+    setOpenAddProduct,
+    setOpenEditProduct,
+    setTabSelected
+  } = useContext(AdminContext);
+
+ 
+
+ 
+
+  
+
   const handleClick = (id) => {
-    if (id === "arrow") {
-      setOpenEdit(!openEdit);
-      
 
+    if (id === "arrow") {
+      setOpenAdminPanel(!openAdminPanel);
     }
     if (id === "add") {
-      setOpenEdit(true);
-      setOpenAddProduct(openAddProduct)
-      setOpenEditProduct(openEditProduct)
-
+      setOpenAdminPanel(true);
+      setOpenAddProduct(true);
+      setOpenEditProduct(false);
+      setTabSelected(id)
     }
-    if(id === "edit"){
-      setOpenEdit(true);
-      setOpenAddProduct(openAddProduct)
-      setOpenEditProduct(openEditProduct)
 
+    if (id === "edit") {
+      setOpenAdminPanel(true);
+      setOpenAddProduct(false);
+      setOpenEditProduct(true);
+      setTabSelected(id)
+      
     }
-    setClassName("")
+
   };
 
-  console.log();
+
   return (
-    <TabStyled onClick={() => handleClick(id)} >
-      {openEdit ? iconDown : iconUp}
+    <TabStyled onClick={() => handleClick(id)} className={className}>
+      {openAdminPanel ? iconDown : iconUp}
       {icon}
       {label && <p>{label}</p>}
     </TabStyled>
   );
 };
+
+
+
+
+
 
 const TabStyled = styled.button`
   padding: 20px;
@@ -67,13 +85,19 @@ const TabStyled = styled.button`
     font-size: larger;
   }
   p {
-    text-transform: capitalize;
     &:hover {
       text-decoration: underline;
     }
   }
+  
   &.isActive{
-      background-color: aquamarine;
+    background-color: ${theme.colors.background_dark};
+    border: ${theme.colors.background_dark};
   }
 `;
+
+
+
+
+
 export default Tab;

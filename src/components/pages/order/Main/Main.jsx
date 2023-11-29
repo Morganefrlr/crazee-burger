@@ -11,10 +11,7 @@ const Main = () => {
       <div className="cart">test</div>
       <div className="container_MenuAdmin">
         <Menu />
-        {adminMode && 
-        <Admin/>
-        }
-        
+        {adminMode && <Admin/>}
       </div>
       
     </MainStyled>
