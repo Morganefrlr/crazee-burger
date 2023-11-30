@@ -22,4 +22,7 @@ export default createContext ({
     menuData:[],
     setMenuData: () =>{},
 
+    addMenuInputsValue:'',
+    setAddMenuInputsValue: () =>{},
+
 })

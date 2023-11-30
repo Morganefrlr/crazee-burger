@@ -1,25 +1,64 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import InputText from "../../../../../reusable/InputText";
-import { FaHamburger } from "react-icons/fa";
+
 import { inputsData } from "../../../AdminData";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
+import AdminContext from '../../../../../../context/AdminContext' 
+
+
 const AddProduct = () => {
-  console.log(inputsData);
+
+
+
+ const {menuData, setMenuData} = useContext(AdminContext)
+ 
+
+  const [product, setProduct] = useState({
+    title:"",
+    imageSource:'',
+    price:0,
+  })
+
+  
+const handleChangeInputs = e => {
+  const value = e.target.value
+  setProduct({
+    ...product,
+    [e.target.name]:value
+  })
+  
+}
+const handleSubmit = (e) =>{
+  e.preventDefault();
+  const newProduct ={
+    ...product,
+    id: Date.now() + product.title,
+  }
+  setMenuData([...menuData,newProduct])
+  setProduct({
+    title:"",
+    imageSource:'',
+    price:0,
+  })
+  
+}
+
+console.log(product)
   return (
     <AddProductStyled>
       <div className="imageContainer">
-        <p>Aucune image</p>
+        {product.imageSource.length !==0 ? (<img src={product.imageSource} alt={product.imageSource}/>) : (<p>Aucune image</p>)}
       </div>
-      <div className="inputsAddProductContainer">
+      <form action="submit" className="inputsAddProductContainer" onSubmit={handleSubmit}>
         {inputsData.map((item) => {
           return (
             <InputText
               key={item.id}
-              value={""}
-              onChange={""}
+              onChange={handleChangeInputs}
+              name={item.name}
+              
               icon={item.icon}
-              required
               type={item.type}
               placeholder={item.placeholder}
               className="addProduct"
@@ -27,7 +66,7 @@ const AddProduct = () => {
           );
         })}
         <button>Ajouter un nouveau produit au menu</button>
-      </div>
+      </form>
     </AddProductStyled>
   );
 };
@@ -47,6 +86,11 @@ width: 100%;
     justify-content: center;
     align-items: center;
     color: ${theme.colors.greySemiDark};
+    img{
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
 }
   .inputsAddProductContainer {
     display: flex;

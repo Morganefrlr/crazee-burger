@@ -22,6 +22,7 @@ const OrderPage = () => {
   const [openEditProduct, setOpenEditProduct] = useState(false)
   const [tabSelected, setTabSelected] = useState('add')
   const [menuData, setMenuData] = useState(fakeMenu2)
+  const [addMenuInputsValue, setAddMenuInputsValue] = useState("")
 
   
 
@@ -37,7 +38,9 @@ const OrderPage = () => {
     tabSelected,
     setTabSelected,
     menuData,
-    setMenuData
+    setMenuData,
+    addMenuInputsValue,
+    setAddMenuInputsValue
   }
 
 

@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-const InputText = ({ value, onChange, icon, className, ...extraProps }) => {
+const InputText = ({ value, onChange, icon, className,name, ...extraProps }) => {
   return (
     <InputStyled className={className}>
       {icon && icon}
-      <input {...extraProps} value={value} onChange={onChange} />
+      <input {...extraProps} value={value} name={name} onChange={onChange} />
     </InputStyled>
   );
 };
