@@ -1,13 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { fakeMenu2 } from "../../../../utils/Data";
-import Card from "../Main/Card";
+import { fakeMenu2 } from "../../../../../utils/Data";
+import Card from "./Card";
 
 const Menu = () => {
   return (
     <MenuStyled>
       {fakeMenu2.map((item) => (
-        <Card key={item.id} img={item.imageSource} title={item.title} price={item.price}  />
+        <Card
+          key={item.id}
+          img={item.imageSource}
+          title={item.title}
+          price={item.price}
+        />
       ))}
     </MenuStyled>
   );
