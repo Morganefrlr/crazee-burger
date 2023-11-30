@@ -2,11 +2,17 @@ import styled from "styled-components";
 import ButtonOrange from "../../../../reusable/ButtonOrange";
 import Price from "./Price";
 import { theme } from "../../../../../theme";
+import {TiDelete} from 'react-icons/ti'
+import { useContext } from "react";
+import AdminContext from "../../../../../context/AdminContext";
+
 
 const Card = ({ img, title, price }) => {
+  const {adminMode} = useContext(AdminContext)
   return (
     <CardStyled>
       <img src={img} alt={title} />
+      {adminMode && <div className="deleteIconContainer"><TiDelete className="icon"/></div>}
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
@@ -29,10 +35,27 @@ const CardStyled = styled.div`
   align-items: center;
   gap: 15px;
   padding: 50px 20px 30px 20px;
+  position: relative;
   img {
     width: 200px;
     height: 145px;
     object-fit: contain;
+  }
+  .deleteIconContainer{
+
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    .icon{
+      width: 30px;
+      height: 30px;
+      fill: ${theme.colors.primary};
+      cursor: pointer;
+      &:hover{
+        fill: ${theme.colors.red};
+      }
+    }
+
   }
   .cardBottom {
     display: flex;
