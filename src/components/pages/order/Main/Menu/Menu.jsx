@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { fakeMenu2 } from "../../../../../utils/Data";
 import Card from "./Card";
-import AdminContext from "../../../../../context/AdminContext";
-import ButtonOrange from "../../../../reusable/ButtonOrange";
 import EmptyMenu from "./EmptyMenu";
 
 const Menu = () => {
   const [menuData, setMenuData] = useState(fakeMenu2);
-  const { adminMode } = useContext(AdminContext);
+ 
 
   const handleDelete = (id) => {
     const newMenu = menuData.filter((el) => el.id !== id);
     setMenuData(newMenu);
   };
+
+
   return (
-    <MenuStyled>
+    <MenuStyled className={menuData.length === 0 ? 'emptyMenu' : ''}>
       {menuData.map((item) => (
         <Card
           key={item.id}
@@ -26,7 +26,7 @@ const Menu = () => {
           id={item.id}
         />
       ))}
-      {!menuData && <EmptyMenu />}
+      {menuData.length === 0  && <EmptyMenu />}
     </MenuStyled>
   );
 };
@@ -40,6 +40,15 @@ const MenuStyled = styled.div`
   padding: 50px 85px;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+
+
+  &.emptyMenu{
+    display: flex;
+    width: 100%;
+    height: 100%;
+
   }
 `;
 

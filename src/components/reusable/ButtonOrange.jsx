@@ -40,6 +40,7 @@ const ButtonStyled = styled.button`
     border: 1px solid ${theme.colors.primary};
     color: ${theme.colors.white};
   }
+
 `;
 
 export default ButtonOrange;

@@ -19,7 +19,7 @@ const Edit = () => {
 
 const EditStyled = styled.div`
   background-color: ${theme.colors.white};
-  height: 250px;
+  height: 240px;
   border: 1px solid ${theme.colors.greyLight};
   box-shadow: 0px -6px 8px -2px #0000001a;
   padding: 20px;
