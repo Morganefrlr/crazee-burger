@@ -8,6 +8,7 @@ import Main from "./Main/Main";
 
 import AdminContext from "../../../context/AdminContext";
 import { useState } from "react";
+import { fakeMenu2 } from "../../../utils/Data";
 
 
 
@@ -20,6 +21,7 @@ const OrderPage = () => {
   const [openAddProduct,  setOpenAddProduct] = useState(true)
   const [openEditProduct, setOpenEditProduct] = useState(false)
   const [tabSelected, setTabSelected] = useState('add')
+  const [menuData, setMenuData] = useState(fakeMenu2)
 
   
 
@@ -33,7 +35,9 @@ const OrderPage = () => {
     openEditProduct,
     setOpenEditProduct,
     tabSelected,
-    setTabSelected
+    setTabSelected,
+    menuData,
+    setMenuData
   }
 
 
