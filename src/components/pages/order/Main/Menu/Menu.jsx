@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { fakeMenu2 } from "../../../../../utils/Data";
 import Card from "./Card";
+import AdminContext from "../../../../../context/AdminContext";
+import ButtonOrange from "../../../../reusable/ButtonOrange";
+import EmptyMenu from "./EmptyMenu";
 
 const Menu = () => {
+  const [menuData, setMenuData] = useState(fakeMenu2);
+  const { adminMode } = useContext(AdminContext);
+
+  const handleDelete = (id) => {
+    const newMenu = menuData.filter((el) => el.id !== id);
+    setMenuData(newMenu);
+  };
   return (
     <MenuStyled>
-      {fakeMenu2.map((item) => (
+      {menuData.map((item) => (
         <Card
           key={item.id}
           img={item.imageSource}
           title={item.title}
           price={item.price}
+          onClick={handleDelete}
+          id={item.id}
         />
       ))}
+      {!menuData && <EmptyMenu />}
     </MenuStyled>
   );
 };

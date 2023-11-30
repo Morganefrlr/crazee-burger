@@ -7,12 +7,14 @@ import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
 
 
-const Card = ({ img, title, price }) => {
+const Card = ({ img, title, price, onClick,id }) => {
   const {adminMode} = useContext(AdminContext)
+
+
   return (
     <CardStyled>
       <img src={img} alt={title} />
-      {adminMode && <div className="deleteIconContainer"><TiDelete className="icon"/></div>}
+      {adminMode && <div className="deleteIconContainer" onClick={() => onClick(id)}><TiDelete className="icon"/></div>}
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
