@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-import AdminContext from "../../../../../context/AdminContext";
+
+import AddProduct from "./AddProduct";
+import AdminContext from "../../../../../../context/AdminContext";
+import { theme } from "../../../../../../theme";
 
 const Edit = () => {
   const { openAddProduct, openEditProduct } = useContext(AdminContext);
@@ -9,7 +11,8 @@ const Edit = () => {
   return (
     <EditStyled>
       {openEditProduct && <p>Modifier un produit</p>}
-      {openAddProduct && <p>Ajouter un produit</p>}
+      
+      {openAddProduct && <AddProduct />}
     </EditStyled>
   );
 };

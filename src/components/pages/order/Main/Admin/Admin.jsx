@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import Tabs from './Tabs';
-import Edit from './Edit';
+
 import AdminContext from '../../../../../context/AdminContext';
+import Edit from './Edit/Edit';
 
 
 const Admin = () => {
