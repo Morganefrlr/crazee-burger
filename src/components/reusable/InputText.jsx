@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-const InputText = ({ value, onChange, icon, ...extraProps }) => {
+const InputText = ({ value, onChange, icon, className, ...extraProps }) => {
   return (
-    <InputStyled>
+    <InputStyled className={className}>
       {icon && icon}
       <input {...extraProps} value={value} onChange={onChange} />
     </InputStyled>
@@ -34,6 +34,20 @@ const InputStyled = styled.div`
 
     &::placeholder {
       color: ${theme.colors.greyMedium};
+    }
+  }
+
+  // style for addProduct Inputs
+
+  &.addProduct {
+    background-color: ${theme.colors.background_white};
+    width: 50%;
+    height: 35px;
+    input {
+      background-color: ${theme.colors.background_white};
+    }
+    .inputIcon {
+      fill: ${theme.colors.greyBlue};
     }
   }
 `;

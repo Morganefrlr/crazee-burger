@@ -1,6 +1,8 @@
 
 import {AiOutlinePlus} from 'react-icons/ai'
-import {MdModeEditOutline} from 'react-icons/md'
+import { FaHamburger } from 'react-icons/fa';
+import {MdModeEditOutline, MdOutlineEuro} from 'react-icons/md'
+import {BsFillCameraFill} from 'react-icons/bs'
 
 
   
@@ -20,6 +22,31 @@ export const tabsData = (tabSelected) => [
     
   },
 ];
+
+
+export const inputsData = [
+  {
+    id:1,
+    icon:<FaHamburger className="inputIcon" />,
+    type: 'text',
+    placeholder:"Nom du produit(ex: Super Burger)"  ,
+
+  },
+  {
+    id:2,
+    icon:<BsFillCameraFill className="inputIcon" />,
+    type: 'text',
+    placeholder: "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" ,
+
+  },
+  {
+    id:3,
+    icon:<MdOutlineEuro className="inputIcon" />,
+    type: 'text',
+    placeholder: "Prix" ,
+
+  },
+]
 
 
 
