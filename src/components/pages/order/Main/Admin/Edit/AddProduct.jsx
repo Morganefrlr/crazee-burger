@@ -7,11 +7,11 @@ import { theme } from "../../../../../../theme";
 const AddProduct = () => {
   console.log(inputsData);
   return (
-    <div>
-      <div>
+    <AddProductStyled>
+      <div className="imageContainer">
         <p>Aucune image</p>
       </div>
-      <InputsContainerStyled >
+      <div className="inputsAddProductContainer">
         {inputsData.map((item) => {
           return (
             <InputText
@@ -22,29 +22,47 @@ const AddProduct = () => {
               required
               type={item.type}
               placeholder={item.placeholder}
-              className='addProduct'
+              className="addProduct"
             />
           );
         })}
         <button>Ajouter un nouveau produit au menu</button>
-      </InputsContainerStyled>
-    </div>
+      </div>
+    </AddProductStyled>
   );
 };
 
-const InputsContainerStyled = styled.div`
+const AddProductStyled = styled.div`
 display: flex;
-flex-direction: column;
-gap:8px;
-button{
-    width: 20%;
-    height: 34px;
+padding-top: 30px;
+padding-left: 71px;
+gap: 20px;
+width: 100%;
+.imageContainer{
+    border: 1px solid ${theme.colors.greyLight};
     border-radius: 5px;
-    border: 1px solid ${theme.colors.success};
-    background-color: ${theme.colors.success};
-    color: ${theme.colors.white};
-   
+    height: 118px;
+    width: 215px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${theme.colors.greySemiDark};
 }
-`
+  .inputsAddProductContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 50%;
+    button {
+      width: 50%;
+      height: 34px;
+      border-radius: 5px;
+      border: 1px solid ${theme.colors.success};
+      background-color: ${theme.colors.success};
+      color: ${theme.colors.white};
+      cursor: pointer;
+    }
+  }
+`;
 
 export default AddProduct;

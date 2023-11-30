@@ -41,7 +41,7 @@ const InputStyled = styled.div`
 
   &.addProduct {
     background-color: ${theme.colors.background_white};
-    width: 50%;
+    width: 100%;
     height: 35px;
     input {
       background-color: ${theme.colors.background_white};
