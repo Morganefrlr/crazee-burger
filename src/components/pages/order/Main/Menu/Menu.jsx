@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
