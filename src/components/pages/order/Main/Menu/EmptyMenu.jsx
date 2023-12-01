@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
-import ButtonOrange from "../../../../reusable/ButtonOrange";
+import ButtonComponent from "../../../../reusable/ButtoComponent";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { fakeMenu2 } from "../../../../../utils/Data";
@@ -16,7 +16,7 @@ const EmptyMenu = () => {
         <EmptyMenuStyled>
           <p>Le menu est vide?</p>
           <p>Cliquez ci-dessous pour le réinitialiser</p>
-          <ButtonOrange
+          <ButtonComponent
             label={"Générer de nouveaux produits"}
             version="normal"
             onClick={handleGenerate}
