@@ -17,4 +17,16 @@ export default createContext ({
 
     tabSelected:'add',
     setTabSelected: () =>{},
+
+
+    menuData:[],
+    setMenuData: () =>{},
+
+    handleAdd : () =>{},
+    handleDelete : () =>{},
+    handleGenerate: () =>{},
+
+    addMenuInputsValue:'',
+    setAddMenuInputsValue: () =>{},
+
 })

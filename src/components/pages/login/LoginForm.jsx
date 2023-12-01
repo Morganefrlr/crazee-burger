@@ -5,7 +5,7 @@ import { theme } from "../../../theme/index";
 import { PiUserCircleFill } from "react-icons/pi";
 import { IoIosArrowForward } from "react-icons/io";
 import InputText from "../../reusable/InputText";
-import ButtonOrange from "../../reusable/ButtonOrange";
+import ButtonComponent from "../../reusable/ButtonComponent";
 
 const LoginForm = () => {
   const [name, setName] = useState("");
@@ -34,10 +34,10 @@ const LoginForm = () => {
           type="text"
           placeholder="Entrez votre prénom..."
         />
-        <ButtonOrange 
+        <ButtonComponent 
           icon={<IoIosArrowForward className="btnIcon" />}
           label={'Accédez à mon espace'}
-          className={'buttonLogin'}
+          version="large"
         />
       </div>
     </FormLoginStyled>
