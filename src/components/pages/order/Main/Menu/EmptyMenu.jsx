@@ -1,19 +1,16 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
-import ButtonComponent from "../../../../reusable/ButtoComponent";
+import ButtonComponent from "../../../../reusable/ButtonComponent";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import { fakeMenu2 } from "../../../../../utils/Data";
 
 const EmptyMenu = () => {
-  const { adminMode, handleGenerate} = useContext(AdminContext);
+  const { adminMode, handleGenerate } = useContext(AdminContext);
 
-
-  
   return (
-    <>
-      {adminMode && (
-        <EmptyMenuStyled>
+    <EmptyMenuStyled>
+      {adminMode ? (
+        <>
           <p>Le menu est vide?</p>
           <p>Cliquez ci-dessous pour le réinitialiser</p>
           <ButtonComponent
@@ -21,16 +18,16 @@ const EmptyMenu = () => {
             version="normal"
             onClick={handleGenerate}
           />
-        </EmptyMenuStyled>
-      )}
-      {!adminMode && (
-        <EmptyMenuStyled>
+        </>
+      ):
+      (
+        <>
           <p>Victime de notre succès! :D</p>
           <p>De nouvelles recettes sont en cours de préparation.</p>
           <p>À très vite!</p>
-        </EmptyMenuStyled>
+        </>
       )}
-    </>
+    </EmptyMenuStyled>
   );
 };
 
@@ -52,7 +49,7 @@ const EmptyMenuStyled = styled.div`
       font-weight: 700;
     }
   }
-  .buttonEmptyMenu{
+  .buttonEmptyMenu {
     height: 50px;
     width: 225px;
     font-size: 12px;
