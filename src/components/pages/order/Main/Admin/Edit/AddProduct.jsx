@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import InputText from "../../../../../reusable/InputText";
-
 import { getInputTextsConfig } from "../../../AdminData";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import AdminContext from "../../../../../../context/AdminContext";
-import { FiCheck } from "react-icons/fi";
-import ButtonOrange from "../../../../../reusable/ButtonOrange";
+import ImageContainer from "./ImageContainer";
+import MessageSuccess from "./MessageSuccess";
+import ButtonComponent from "../../../../../reusable/ButtonComponent";
 
 const AddProduct = () => {
   const { handleAdd } = useContext(AdminContext);
@@ -48,16 +48,9 @@ const AddProduct = () => {
 
   return (
     <AddProductStyled>
-      <div className="imageContainer">
-        {product.imageSource ? (
-          <img src={product.imageSource} alt={product.imageSource} />
-        ) : (
-          <p>Aucune image</p>
-        )}
-      </div>
+      <ImageContainer imageSource={product.imageSource} title={product.title} />
       <form
         action="submit"
-        className="inputsAddProductContainer"
         onSubmit={handleSubmit}
       >
         {inputTexts.map((item) => {
@@ -65,23 +58,17 @@ const AddProduct = () => {
             <InputText
               key={item.id}
               onChange={handleChangeInputs}
-              name={item.name}
-              icon={item.icon}
-              type={item.type}
-              value={item.value}
-              placeholder={item.placeholder}
+              {...item}
               version="product"
             />
           );
         })}
         <div className="buttonContainer">
-          <ButtonOrange label={"Ajouter un nouveau produit au menu"} version="success"/>
-          {messageSucces && (
-            <div className="messageSucces">
-              <FiCheck className="icon" />
-              <p>Ajouté avec succès!</p>
-            </div>
-          )}
+          <ButtonComponent
+            label={"Ajouter un nouveau produit au menu"}
+            version="success"
+          />
+          <MessageSuccess messageSucces={messageSucces} />
         </div>
       </form>
     </AddProductStyled>
@@ -109,7 +96,7 @@ const AddProductStyled = styled.div`
       height: 100%;
     }
   }
-  .inputsAddProductContainer {
+  form {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -119,19 +106,6 @@ const AddProductStyled = styled.div`
       display: flex;
       gap: 15px;
       align-items: center;
-     
-      .messageSucces {
-        color: ${theme.colors.success};
-        font-size: 15px;
-        display: flex;
-        gap: 5px;
-        .icon {
-          width: 18px;
-          height: 18px;
-          border-radius: 50%;
-          border: 1px solid ${theme.colors.success};
-        }
-      }
     }
   }
 `;

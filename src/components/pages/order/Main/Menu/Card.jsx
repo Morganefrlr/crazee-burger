@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import ButtonOrange from "../../../../reusable/ButtonOrange";
 import Price from "./Price";
 import { theme } from "../../../../../theme";
 import {TiDelete} from 'react-icons/ti'
 import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
+import ButtonComponent from "../../../../reusable/ButtonComponent";
 
 
 const Card = ({ img, title, price, onClick,id }) => {
@@ -19,7 +19,7 @@ const Card = ({ img, title, price, onClick,id }) => {
         <h3>{title}</h3>
         <div>
           <Price price={price} />
-          <ButtonOrange label={"Ajouter"} version='small' />
+          <ButtonComponent label={"Ajouter"} version='small' />
         </div>
       </div>
     </CardStyled>

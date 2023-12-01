@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const ButtonOrange = ({ icon, label, onClick, version = "normal" }) => {
+const ButtonComponent = ({ icon, label, onClick, version = "normal" }) => {
   return (
     <ButtonStyled version={version} onClick={onClick}>
       <span>{label}</span>
@@ -82,4 +82,4 @@ const extraStyle = {
   small: extraStyleSmall,
   normal: extraStyleNormal
 };
-export default ButtonOrange;
+export default ButtonComponent;
