@@ -3,9 +3,13 @@ import AdminContext from "../../../../../context/AdminContext";
 import ButtonOrange from "../../../../reusable/ButtonOrange";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import { fakeMenu2 } from "../../../../../utils/Data";
 
 const EmptyMenu = () => {
-  const { adminMode } = useContext(AdminContext);
+  const { adminMode, handleGenerate} = useContext(AdminContext);
+
+
+  
   return (
     <>
       {adminMode && (
@@ -14,7 +18,8 @@ const EmptyMenu = () => {
           <p>Cliquez ci-dessous pour le réinitialiser</p>
           <ButtonOrange
             label={"Générer de nouveaux produits"}
-            className={"buttonEmptyMenu"}
+            version="normal"
+            onClick={handleGenerate}
           />
         </EmptyMenuStyled>
       )}

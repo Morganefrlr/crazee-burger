@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const ButtonOrange = ({ icon, label, className }) => {
+const ButtonOrange = ({ icon, label, onClick, version = "normal" }) => {
   return (
-    <ButtonStyled className={className}>
+    <ButtonStyled version={version} onClick={onClick}>
       <span>{label}</span>
       {icon && icon}
     </ButtonStyled>
@@ -12,19 +12,18 @@ const ButtonOrange = ({ icon, label, className }) => {
 };
 
 const ButtonStyled = styled.button`
-  width: 100%;
-  background-color: ${theme.colors.primary};
-  border: 1px solid ${theme.colors.primary};
   border-radius: 5px;
-  color: ${theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   font-weight: ${theme.fonts.weights.bold};
+  color: ${theme.colors.white};
   font-size: 15px;
   transition: all 300ms ease;
   cursor: pointer;
+  background-color: ${theme.colors.primary};
+  border: 1px solid ${theme.colors.primary};
 
   .btnIcon {
     height: auto;
@@ -36,11 +35,51 @@ const ButtonStyled = styled.button`
     border: 1px solid ${theme.colors.primary};
   }
   &:focus {
+    color: ${theme.colors.white};
     background-color: ${theme.colors.primary};
     border: 1px solid ${theme.colors.primary};
-    color: ${theme.colors.white};
   }
 
+  ${({ version }) => extraStyle[version]}
 `;
 
+const extraStyleSuccess = css`
+  width: 50%;
+  height: 34px;
+  border: 1px solid ${theme.colors.success};
+  background-color: ${theme.colors.success};
+  cursor: pointer;
+  &:hover {
+    color: ${theme.colors.success};
+    border: 1px solid ${theme.colors.success};
+  }
+  &:focus {
+    background-color: ${theme.colors.success};
+    border: 1px solid ${theme.colors.success};
+    color: ${theme.colors.white};
+  }
+`;
+const extraStyleSmall = css`
+  flex: 1;
+  height: 38px;
+  font-size: 11px;
+`;
+
+const extraStyleNormal = css`
+  height: 50px;
+  width: 225px;
+  font-size: 12px;
+`;
+
+const extraSytleLarge = css`
+  width: 100%;
+  height: 53px;
+`;
+
+const extraStyle = {
+  large: extraSytleLarge,
+  success: extraStyleSuccess,
+  small: extraStyleSmall,
+  normal: extraStyleNormal
+};
 export default ButtonOrange;

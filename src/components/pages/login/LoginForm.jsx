@@ -37,7 +37,7 @@ const LoginForm = () => {
         <ButtonOrange 
           icon={<IoIosArrowForward className="btnIcon" />}
           label={'Accédez à mon espace'}
-          className={'buttonLogin'}
+          version="large"
         />
       </div>
     </FormLoginStyled>

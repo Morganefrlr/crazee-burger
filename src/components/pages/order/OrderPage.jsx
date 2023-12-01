@@ -16,6 +16,12 @@ const OrderPage = () => {
   const params = useParams();
   const name = params.id;
   
+
+
+
+  ///// Admin Context /////
+
+
   const [adminMode, setAdminMode] = useState(false)
   const [openAdminPanel, setOpenAdminPanel] = useState(false)
   const [openAddProduct,  setOpenAddProduct] = useState(true)
@@ -24,7 +30,24 @@ const OrderPage = () => {
   const [menuData, setMenuData] = useState(fakeMenu2)
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("")
 
-  
+
+  const handleAdd = (newProduct) =>{
+
+    const menuCopy = [...menuData]
+    const menuUpdated = [newProduct, ...menuCopy]
+    setMenuData(menuUpdated)
+  }
+
+  const handleDelete = (idToDelete) =>{
+    const menuCopy = [...menuData]
+    const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
+    setMenuData(menuUpdated)
+
+  }
+
+const handleGenerate = () =>{
+  setMenuData(fakeMenu2)
+}
 
   const adminProviderValue = {
     adminMode,  
@@ -40,11 +63,14 @@ const OrderPage = () => {
     menuData,
     setMenuData,
     addMenuInputsValue,
-    setAddMenuInputsValue
+    setAddMenuInputsValue,
+    handleAdd,
+    handleDelete,
+    handleGenerate,
   }
 
 
-
+///////////////////////////////////////////////
 
   
   return (

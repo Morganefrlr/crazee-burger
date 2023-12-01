@@ -22,6 +22,10 @@ export default createContext ({
     menuData:[],
     setMenuData: () =>{},
 
+    handleAdd : () =>{},
+    handleDelete : () =>{},
+    handleGenerate: () =>{},
+
     addMenuInputsValue:'',
     setAddMenuInputsValue: () =>{},
 

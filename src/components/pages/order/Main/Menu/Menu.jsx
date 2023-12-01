@@ -5,11 +5,12 @@ import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
 
 const Menu = () => {
-  const { menuData, setMenuData } = useContext(AdminContext);
 
-  const handleDelete = (id) => {
-    const newMenu = menuData.filter((el) => el.id !== id);
-    setMenuData(newMenu);
+  
+  const { menuData, handleDelete } = useContext(AdminContext);
+
+  const handleDeleteProduct = (idToDelete) => {
+    handleDelete(idToDelete)
   };
 
   return (
@@ -20,7 +21,7 @@ const Menu = () => {
           img={item.imageSource}
           title={item.title}
           price={item.price}
-          onClick={handleDelete}
+          onClick={handleDeleteProduct}
           id={item.id}
         />
       ))}

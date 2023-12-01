@@ -18,14 +18,14 @@ export const tabsData = (tabSelected) => [
   },
 ];
 
-export const inputsData =  [
+export const getInputTextsConfig = (product) => [
   {
     id: 1,
     icon: <FaHamburger className="inputIcon" />,
     type: "text",
     name:"title",
     placeholder: "Nom du produit (ex: Super Burger)",
-    
+    value:product.title,
   },
   {
     id: 2,
@@ -34,14 +34,14 @@ export const inputsData =  [
     name:"imageSource",
     placeholder:
       "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)",
-   
+   value:product.imageSource,
   },
   {
     id: 3,
     icon: <MdOutlineEuro className="inputIcon" />,
-    type: "number",
+    type: "text",
     name:"price",
     placeholder: "Prix",
-    
+    value:product.price,
   },
 ];

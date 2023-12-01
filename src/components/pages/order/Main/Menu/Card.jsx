@@ -13,13 +13,13 @@ const Card = ({ img, title, price, onClick,id }) => {
 
   return (
     <CardStyled>
-      <img src={img} alt={title} />
+      {img ? (<img src={img} alt={title} />) : (<img src='/images/coming-soon.png' alt={title} />)}
       {adminMode && <div className="deleteIconContainer" onClick={() => onClick(id)}><TiDelete className="icon"/></div>}
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
           <Price price={price} />
-          <ButtonOrange label={"Ajouter"} className={"buttonCard"} />
+          <ButtonOrange label={"Ajouter"} version='small' />
         </div>
       </div>
     </CardStyled>
@@ -77,11 +77,7 @@ const CardStyled = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .buttonCard {
-        flex: 1;
-        height: 38px;
-        font-size: 11px;
-      }
+      
     }
   }
 `;
