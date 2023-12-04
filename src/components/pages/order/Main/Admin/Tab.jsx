@@ -19,7 +19,8 @@ const Tab = ({
     setOpenAdminPanel,
     setOpenAddProduct,
     setOpenEditProduct,
-    setTabSelected
+    setTabSelected,
+    setOpenEditProductId
   } = useContext(AdminContext);
 
  
@@ -38,6 +39,7 @@ const Tab = ({
       setOpenAddProduct(true);
       setOpenEditProduct(false);
       setTabSelected(id)
+      setOpenEditProductId('')
     }
 
     if (id === "edit") {

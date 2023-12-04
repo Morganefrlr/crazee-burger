@@ -29,6 +29,7 @@ const OrderPage = () => {
   const [tabSelected, setTabSelected] = useState('add')
   const [menuData, setMenuData] = useState(fakeMenu2)
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("")
+  const [openEditProductId, setOpenEditProductId] = useState('')
 
 
   const handleAdd = (newProduct) =>{
@@ -42,6 +43,12 @@ const OrderPage = () => {
     const menuCopy = [...menuData]
     const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
     setMenuData(menuUpdated)
+
+  }
+
+  const handleEdit = (idToEdit) =>{
+    const menuCopy = [...menuData]
+    const menuUpdated = menuCopy.filter((el) => el.id !== idToEdit);
 
   }
 
@@ -67,6 +74,8 @@ const handleGenerate = () =>{
     handleAdd,
     handleDelete,
     handleGenerate,
+    openEditProductId,
+    setOpenEditProductId
   }
 
 

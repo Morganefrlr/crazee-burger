@@ -7,14 +7,16 @@ import { theme } from "../../../../../../theme";
 import { HiCursorClick } from "react-icons/hi";
 
 const Edit = () => {
-  const { openAddProduct, openEditProduct } = useContext(AdminContext);
+  const { openAddProduct, openEditProduct, openEditProductId } =
+    useContext(AdminContext);
 
   return (
     <EditStyled>
-      {openEditProduct && (
+      {openEditProduct && openEditProductId && <p>Coucou</p>}
+      {openEditProduct && !openEditProductId && (
         <div className="editProduct">
-          <p>Cliquez sur un produit pour le mdifier</p>
-          <HiCursorClick className="icon"/>
+          <p>Cliquez sur un produit pour le modifier</p>
+          <HiCursorClick className="icon" />
         </div>
       )}
 
@@ -41,11 +43,10 @@ const EditStyled = styled.div`
     p {
       font-family: "Amatic SC", sans-serif;
     }
-    .icon{
+    .icon {
       width: 24px;
       height: 24px;
     }
-
   }
 `;
 export default Edit;

@@ -15,6 +15,9 @@ export default createContext ({
     openEditProduct:false,
     setOpenEditProduct: () => {},
 
+    openEditProductId:'',
+    setOpenEditProductId: () =>{},
+
     tabSelected:'add',
     setTabSelected: () =>{},
 
@@ -28,5 +31,6 @@ export default createContext ({
 
     addMenuInputsValue:'',
     setAddMenuInputsValue: () =>{},
+
 
 })

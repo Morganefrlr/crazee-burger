@@ -6,18 +6,18 @@ import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
 import ButtonComponent from "../../../../reusable/ButtonComponent";
 
-const Card = ({ img, title, price, onClick, id }) => {
+const Card = ({ img, title, price, handleDelete, id, handleSelect }) => {
   const { adminMode } = useContext(AdminContext);
 
   return (
-    <CardStyled>
+    <CardStyled onClick={() => handleSelect(id)}>
       {img ? (
         <img src={img} alt={title} />
       ) : (
         <img src="/images/coming-soon.png" alt={title} />
       )}
       {adminMode && (
-        <div className="deleteIconContainer" onClick={() => onClick(id)}>
+        <div className="deleteIconContainer" onClick={() => handleDelete(id)}>
           <TiDelete className="icon" />
         </div>
       )}

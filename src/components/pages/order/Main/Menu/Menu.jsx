@@ -7,11 +7,20 @@ import AdminContext from "../../../../../context/AdminContext";
 const Menu = () => {
 
   
-  const { menuData, handleDelete } = useContext(AdminContext);
+  const { menuData, handleDelete, setOpenEditProduct, setOpenAdminPanel, setOpenAddProduct, setTabSelected, setOpenEditProductId} = useContext(AdminContext);
 
   const handleDeleteProduct = (idToDelete) => {
     handleDelete(idToDelete)
   };
+
+  const handleSelectedProduct = (idToEdit) => {
+    setTabSelected('edit')
+    setOpenAddProduct(false)
+    setOpenAdminPanel(true)
+    setOpenEditProduct(true)
+    setOpenEditProductId(idToEdit)
+    
+  }
 
   return (
     <MenuStyled className={menuData.length === 0 ? "emptyMenu" : ""}>
@@ -21,7 +30,8 @@ const Menu = () => {
           img={item.imageSource}
           title={item.title}
           price={item.price}
-          onClick={handleDeleteProduct}
+          handleDelete={handleDeleteProduct}
+          handleSelect={handleSelectedProduct}
           id={item.id}
         />
       ))}
