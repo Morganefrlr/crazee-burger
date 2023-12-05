@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import EditFormEmpty from "./EditFormEmpty";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import AdminContext from "../../../../../../context/AdminContext";
 import ImageContainer from "./ImageContainer";
 import { getInputTextsConfig } from "./inputTextConfig";
@@ -9,59 +9,48 @@ import InputText from "../../../../../reusable/InputText";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const EditForm = () => {
-  const { productSelected } = useContext(AdminContext);
-  const [edictedProduct, setEdictedProduct] =useState(EMPTY_PRODUCT)
+  const { productSelected, handleEdit, setProductSelected } =
+    useContext(AdminContext);
   const inputTexts = getInputTextsConfig(productSelected);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const editingProduct = {
+      ...productSelected,
+      [name]: value,
+    };
 
-const handleChange = (e) => {
-  const {name , value} = e.target
-  setEdictedProduct({
-    ...productSelected,
-    [name]: value,
-  });
-  
-};
-
+    setProductSelected(editingProduct);
+    handleEdit(editingProduct);
+  };
 
   return (
     <EditStyled>
-      {productSelected !== EMPTY_PRODUCT  ? (
+      {productSelected !== EMPTY_PRODUCT ? (
         <>
           <ImageContainer
             imageSource={productSelected.imageSource}
             title={productSelected.title}
           />
           <form action="submit">
-          {inputTexts.map((item) => {
-          return (
-            <InputText
-              key={item.id}
-              onChange={handleChange}
-              {...item}
-              version="product"
-            />
-          );
-        })}
+            {inputTexts.map((item) => {
+              return (
+                <InputText
+                  key={item.id}
+                  onChange={handleChange}
+                  {...item}
+                  version="product"
+                />
+              );
+            })}
           </form>
         </>
-      ): (<EditFormEmpty/>)}
-
+      ) : (
+        <EditFormEmpty />
+      )}
     </EditStyled>
   );
 };
-
-const EditStyled2 = styled.div`
-  background-color: ${theme.colors.white};
-  height: 240px;
-  border: 1px solid ${theme.colors.greyLight};
-  box-shadow: 0px -6px 8px -2px #0000001a;
-  padding: 20px;
-`;
-
-
-
-
 
 const EditStyled = styled.div`
   display: flex;

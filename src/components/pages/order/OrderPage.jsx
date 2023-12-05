@@ -15,7 +15,8 @@ const OrderPage = () => {
   const params = useParams();
   const name = params.id;
 
-  ///// Admin Context /////
+  
+  /////////////////////////////////////////////// ADMIN CONTEXT ///////////////////////////////////////////////
 
   const [adminMode, setAdminMode] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -24,21 +25,25 @@ const OrderPage = () => {
   const [tabSelected, setTabSelected] = useState("add");
   const [menuData, setMenuData] = useState(fakeMenu2);
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
-  
 
   const handleAdd = (newProduct) => {
-    const menuCopy = [...menuData];
+    const menuCopy = JSON.parse(JSON.stringify(menuData));
     const menuUpdated = [newProduct, ...menuCopy];
     setMenuData(menuUpdated);
   };
 
   const handleDelete = (idToDelete) => {
-    const menuCopy = [...menuData];
+    const menuCopy = JSON.parse(JSON.stringify(menuData));
     const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
     setMenuData(menuUpdated);
   };
 
-
+  const handleEdit = (productToEdit) => {
+    const menuCopy = JSON.parse(JSON.stringify(menuData));
+    const indexProduct = menuCopy.findIndex((el) => el.id === productToEdit.id);
+    menuCopy[indexProduct] = productToEdit;
+    setMenuData(menuCopy);
+  };
 
   const handleGenerate = () => {
     setMenuData(fakeMenu2);
@@ -62,7 +67,7 @@ const OrderPage = () => {
     handleAdd,
     handleDelete,
     handleGenerate,
-
+    handleEdit,
   };
 
   ///////////////////////////////////////////////

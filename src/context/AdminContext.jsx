@@ -22,6 +22,8 @@ export default createContext({
   handleAdd: () => {},
   handleDelete: () => {},
   handleGenerate: () => {},
+  handleEdit: () => {},
+
 
 
   addMenuInputsValue: "",
