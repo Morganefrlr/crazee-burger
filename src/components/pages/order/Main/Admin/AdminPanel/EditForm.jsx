@@ -1,26 +1,20 @@
-import { useContext } from "react";
-import styled from "styled-components";
 
-import AddProduct from "./AddProduct";
-import AdminContext from "../../../../../../context/AdminContext";
+import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { HiCursorClick } from "react-icons/hi";
 
-const Edit = () => {
-  const { openAddProduct, openEditProduct, openEditProductId } =
-    useContext(AdminContext);
+
+const EditForm = () => {
 
   return (
     <EditStyled>
-      {openEditProduct && openEditProductId && <p>Coucou</p>}
-      {openEditProduct && !openEditProductId && (
+      
         <div className="editProduct">
           <p>Cliquez sur un produit pour le modifier</p>
           <HiCursorClick className="icon" />
         </div>
-      )}
 
-      {openAddProduct && <AddProduct />}
+
     </EditStyled>
   );
 };
@@ -49,4 +43,4 @@ const EditStyled = styled.div`
     }
   }
 `;
-export default Edit;
+export default EditForm;

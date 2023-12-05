@@ -1,4 +1,4 @@
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import { theme } from "../../../theme";
@@ -9,62 +9,47 @@ import Main from "./Main/Main";
 import AdminContext from "../../../context/AdminContext";
 import { useState } from "react";
 import { fakeMenu2 } from "../../../utils/Data";
-
-
+import { EMPTY_PRODUCT } from "../../../enums/product";
 
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
-  
-
-
 
   ///// Admin Context /////
 
+  const [adminMode, setAdminMode] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [tabSelected, setTabSelected] = useState("add");
+  const [menuData, setMenuData] = useState(fakeMenu2);
+  const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
+  
 
-  const [adminMode, setAdminMode] = useState(false)
-  const [openAdminPanel, setOpenAdminPanel] = useState(false)
-  const [openAddProduct,  setOpenAddProduct] = useState(true)
-  const [openEditProduct, setOpenEditProduct] = useState(false)
-  const [tabSelected, setTabSelected] = useState('add')
-  const [menuData, setMenuData] = useState(fakeMenu2)
-  const [addMenuInputsValue, setAddMenuInputsValue] = useState("")
-  const [openEditProductId, setOpenEditProductId] = useState('')
+  const handleAdd = (newProduct) => {
+    const menuCopy = [...menuData];
+    const menuUpdated = [newProduct, ...menuCopy];
+    setMenuData(menuUpdated);
+  };
 
-
-  const handleAdd = (newProduct) =>{
-
-    const menuCopy = [...menuData]
-    const menuUpdated = [newProduct, ...menuCopy]
-    setMenuData(menuUpdated)
-  }
-
-  const handleDelete = (idToDelete) =>{
-    const menuCopy = [...menuData]
+  const handleDelete = (idToDelete) => {
+    const menuCopy = [...menuData];
     const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
-    setMenuData(menuUpdated)
+    setMenuData(menuUpdated);
+  };
 
-  }
 
-  const handleEdit = (idToEdit) =>{
-    const menuCopy = [...menuData]
-    const menuUpdated = menuCopy.filter((el) => el.id !== idToEdit);
 
-  }
-
-const handleGenerate = () =>{
-  setMenuData(fakeMenu2)
-}
+  const handleGenerate = () => {
+    setMenuData(fakeMenu2);
+  };
 
   const adminProviderValue = {
-    adminMode,  
-    setAdminMode, 
-    openAdminPanel,
-    setOpenAdminPanel,
-    openAddProduct, 
-    setOpenAddProduct, 
-    openEditProduct,
-    setOpenEditProduct,
+    adminMode,
+    setAdminMode,
+    isCollapsed,
+    setIsCollapsed,
+    newProduct,
+    setNewProduct,
     tabSelected,
     setTabSelected,
     menuData,
@@ -74,14 +59,11 @@ const handleGenerate = () =>{
     handleAdd,
     handleDelete,
     handleGenerate,
-    openEditProductId,
-    setOpenEditProductId
-  }
 
+  };
 
-///////////////////////////////////////////////
+  ///////////////////////////////////////////////
 
-  
   return (
     <OrderMainStyled>
       <AdminContext.Provider value={adminProviderValue}>
@@ -92,9 +74,6 @@ const handleGenerate = () =>{
     </OrderMainStyled>
   );
 };
-
-
-
 
 const OrderMainStyled = styled.div`
   width: 100vw;

@@ -1,36 +1,27 @@
 import { createContext } from "react";
 
-export default createContext ({
-    adminMode: false,
-    setAdminMode: () => {},
+export default createContext({
+  adminMode: false,
+  setAdminMode: () => {},
 
-    openAdminPanel: false,
-    setOpenAdminPanel: () => {},
+  isCollapsed: false,
+  setIsCollapsed: () => {},
 
+  tabSelected: "add",
+  setTabSelected: () => {},
 
-
-    openAddProduct: true,
-    setOpenAddProduct: () => {},
-
-    openEditProduct:false,
-    setOpenEditProduct: () => {},
-
-    openEditProductId:'',
-    setOpenEditProductId: () =>{},
-
-    tabSelected:'add',
-    setTabSelected: () =>{},
+  newProduct: {},
+  setNewProduct: () => {},
 
 
-    menuData:[],
-    setMenuData: () =>{},
+  menuData: [],
+  setMenuData: () => {},
 
-    handleAdd : () =>{},
-    handleDelete : () =>{},
-    handleGenerate: () =>{},
-
-    addMenuInputsValue:'',
-    setAddMenuInputsValue: () =>{},
+  handleAdd: () => {},
+  handleDelete: () => {},
+  handleGenerate: () => {},
 
 
-})
+  addMenuInputsValue: "",
+  setAddMenuInputsValue: () => {},
+});

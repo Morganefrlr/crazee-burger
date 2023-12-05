@@ -1,36 +1,28 @@
 import { useContext, useState } from "react";
 import InputText from "../../../../../reusable/InputText";
-import { getInputTextsConfig } from "../../../AdminData";
+import { getInputTextsConfig } from "./inputTextConfig";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import AdminContext from "../../../../../../context/AdminContext";
 import ImageContainer from "./ImageContainer";
 import MessageSuccess from "./MessageSuccess";
 import ButtonComponent from "../../../../../reusable/ButtonComponent";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const AddProduct = () => {
-  const { handleAdd } = useContext(AdminContext);
+  const { handleAdd, newProduct, setNewProduct } = useContext(AdminContext);
   const [messageSucces, setMessageSucces] = useState(false);
 
-  const [product, setProduct] = useState({
-    title: "",
-    imageSource: "",
-    price: 0,
-  });
-  const inputTexts = getInputTextsConfig(product);
+  const inputTexts = getInputTextsConfig(newProduct);
 
   const handleChangeInputs = (e) => {
     const value = e.target.value;
-    setProduct({
-      ...product,
+    setNewProduct({
+      ...newProduct,
       [e.target.name]: value,
     });
   };
 
-  const newProduct = {
-    ...product,
-    id: crypto.randomUUID,
-  };
 
   const displaySuccessMessage = () => {
     setMessageSucces(true);
@@ -41,18 +33,19 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    newProduct, handleAdd(newProduct);
-    setProduct({ title: "", imageSource: "", price: 0 });
+    const productToAdd = {
+      ...newProduct,
+      id: crypto.randomUUID(),
+    };
+    handleAdd(productToAdd);
+    setNewProduct(EMPTY_PRODUCT)
     displaySuccessMessage();
   };
 
   return (
     <AddProductStyled>
-      <ImageContainer imageSource={product.imageSource} title={product.title} />
-      <form
-        action="submit"
-        onSubmit={handleSubmit}
-      >
+      <ImageContainer imageSource={newProduct.imageSource} title={newProduct.title} />
+      <form action="submit" onSubmit={handleSubmit}>
         {inputTexts.map((item) => {
           return (
             <InputText
@@ -81,6 +74,11 @@ const AddProductStyled = styled.div`
   padding-left: 71px;
   gap: 20px;
   width: 100%;
+  background-color: ${theme.colors.white};
+  height: 240px;
+  border: 1px solid ${theme.colors.greyLight};
+  box-shadow: 0px -6px 8px -2px #0000001a;
+
   .imageContainer {
     border: 1px solid ${theme.colors.greyLight};
     border-radius: 5px;

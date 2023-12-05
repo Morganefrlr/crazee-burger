@@ -1,22 +1,22 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import Tabs from './Tabs';
-
 import AdminContext from '../../../../../context/AdminContext';
-import Edit from './Edit/Edit';
-
+import AdminPanelTabs from './AdminPanelTabs';
+import AdminPanel from './AdminPanel/AdminPanel';
+;
 
 const Admin = () => {
 
 
-const {openAdminPanel} = useContext(AdminContext)
+const {isCollapsed} = useContext(AdminContext)
+
+
+
 
     return (
         <AdminStyled>
-            <Tabs/>
-            {openAdminPanel &&
-                <Edit />
-            }
+            <AdminPanelTabs/>
+            {!isCollapsed && <AdminPanel/>}
         </AdminStyled>
     );
 };

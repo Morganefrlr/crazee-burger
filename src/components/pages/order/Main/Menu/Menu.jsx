@@ -7,7 +7,7 @@ import AdminContext from "../../../../../context/AdminContext";
 const Menu = () => {
 
   
-  const { menuData, handleDelete, setOpenEditProduct, setOpenAdminPanel, setOpenAddProduct, setTabSelected, setOpenEditProductId} = useContext(AdminContext);
+  const { menuData, handleDelete, setIsCollapsed,  setTabSelected, } = useContext(AdminContext);
 
   const handleDeleteProduct = (idToDelete) => {
     handleDelete(idToDelete)
@@ -15,10 +15,8 @@ const Menu = () => {
 
   const handleSelectedProduct = (idToEdit) => {
     setTabSelected('edit')
-    setOpenAddProduct(false)
-    setOpenAdminPanel(true)
-    setOpenEditProduct(true)
-    setOpenEditProductId(idToEdit)
+    setIsCollapsed(true)
+
     
   }
 

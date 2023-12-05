@@ -1,61 +1,19 @@
 import { theme } from "../../../../../theme";
 import styled from "styled-components";
-import AdminContext from "../../../../../context/AdminContext";
-import { useContext} from "react";
+
 
 
 const Tab = ({
-  iconDown,
-  iconUp,
   icon,
   label,
-  id,
+  onClick,
   className
 }) => {
 
 
-  const {
-    openAdminPanel,
-    setOpenAdminPanel,
-    setOpenAddProduct,
-    setOpenEditProduct,
-    setTabSelected,
-    setOpenEditProductId
-  } = useContext(AdminContext);
-
- 
-
- 
-
-  
-
-  const handleClick = (id) => {
-
-    if (id === "arrow") {
-      setOpenAdminPanel(!openAdminPanel);
-    }
-    if (id === "add") {
-      setOpenAdminPanel(true);
-      setOpenAddProduct(true);
-      setOpenEditProduct(false);
-      setTabSelected(id)
-      setOpenEditProductId('')
-    }
-
-    if (id === "edit") {
-      setOpenAdminPanel(true);
-      setOpenAddProduct(false);
-      setOpenEditProduct(true);
-      setTabSelected(id)
-      
-    }
-
-  };
-
 
   return (
-    <TabStyled onClick={() => handleClick(id)} className={className}>
-      {openAdminPanel ? iconDown : iconUp}
+    <TabStyled onClick={onClick} className={className}>
       {icon}
       {label && <p>{label}</p>}
     </TabStyled>
