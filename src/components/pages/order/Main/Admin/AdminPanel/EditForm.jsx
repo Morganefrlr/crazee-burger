@@ -1,45 +1,104 @@
-
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
-import { HiCursorClick } from "react-icons/hi";
-
+import EditFormEmpty from "./EditFormEmpty";
+import { useContext, useState } from "react";
+import AdminContext from "../../../../../../context/AdminContext";
+import ImageContainer from "./ImageContainer";
+import { getInputTextsConfig } from "./inputTextConfig";
+import InputText from "../../../../../reusable/InputText";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const EditForm = () => {
+  const { productSelected } = useContext(AdminContext);
+  const [edictedProduct, setEdictedProduct] =useState(EMPTY_PRODUCT)
+  const inputTexts = getInputTextsConfig(productSelected);
+
+
+const handleChange = (e) => {
+  const {name , value} = e.target
+  setEdictedProduct({
+    ...productSelected,
+    [name]: value,
+  });
+  
+};
+
 
   return (
     <EditStyled>
-      
-        <div className="editProduct">
-          <p>Cliquez sur un produit pour le modifier</p>
-          <HiCursorClick className="icon" />
-        </div>
-
+      {productSelected !== EMPTY_PRODUCT  ? (
+        <>
+          <ImageContainer
+            imageSource={productSelected.imageSource}
+            title={productSelected.title}
+          />
+          <form action="submit">
+          {inputTexts.map((item) => {
+          return (
+            <InputText
+              key={item.id}
+              onChange={handleChange}
+              {...item}
+              version="product"
+            />
+          );
+        })}
+          </form>
+        </>
+      ): (<EditFormEmpty/>)}
 
     </EditStyled>
   );
 };
 
-const EditStyled = styled.div`
+const EditStyled2 = styled.div`
   background-color: ${theme.colors.white};
   height: 240px;
   border: 1px solid ${theme.colors.greyLight};
   box-shadow: 0px -6px 8px -2px #0000001a;
   padding: 20px;
+`;
 
-  .editProduct {
+
+
+
+
+const EditStyled = styled.div`
+  display: flex;
+  padding-top: 30px;
+  padding-left: 71px;
+  gap: 20px;
+  width: 100%;
+  background-color: ${theme.colors.white};
+  height: 240px;
+  border: 1px solid ${theme.colors.greyLight};
+  box-shadow: 0px -6px 8px -2px #0000001a;
+
+  .imageContainer {
+    border: 1px solid ${theme.colors.greyLight};
+    border-radius: 5px;
+    height: 118px;
+    width: 215px;
     display: flex;
-    font-size: 24px;
-    font-weight: 400;
-    gap: 9px;
-    color: ${theme.colors.greyBlue};
-    padding-top: 81px;
-    padding-left: 71px;
-    p {
-      font-family: "Amatic SC", sans-serif;
+    justify-content: center;
+    align-items: center;
+    color: ${theme.colors.greySemiDark};
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
     }
-    .icon {
-      width: 24px;
-      height: 24px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 50%;
+
+    .buttonContainer {
+      display: flex;
+      gap: 15px;
+      align-items: center;
     }
   }
 `;

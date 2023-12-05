@@ -10,7 +10,7 @@ const Card = ({ img, title, price, handleDelete, id, handleSelect }) => {
   const { adminMode } = useContext(AdminContext);
 
   return (
-    <CardStyled onClick={() => handleSelect(id)}>
+    <CardStyled onClick={handleSelect}>
       {img ? (
         <img src={img} alt={title} />
       ) : (

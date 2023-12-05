@@ -20,6 +20,7 @@ const OrderPage = () => {
   const [adminMode, setAdminMode] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [tabSelected, setTabSelected] = useState("add");
   const [menuData, setMenuData] = useState(fakeMenu2);
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
@@ -50,6 +51,8 @@ const OrderPage = () => {
     setIsCollapsed,
     newProduct,
     setNewProduct,
+    productSelected,
+    setProductSelected,
     tabSelected,
     setTabSelected,
     menuData,
