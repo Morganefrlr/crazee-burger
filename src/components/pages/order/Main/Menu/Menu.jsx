@@ -7,13 +7,13 @@ import AdminContext from "../../../../../context/AdminContext";
 const Menu = () => {
 
   
-  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected } = useContext(AdminContext);
+  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode } = useContext(AdminContext);
 
   const handleDeleteProduct = (idToDelete) => {
     handleDelete(idToDelete)
   };
 
-  const handleSelectedProduct = async (idToEdit) => {
+  const handleSelectedProduct = (idToEdit) => {
     setIsCollapsed(false)
     setTabSelected('edit')
     const productToEdit = menuData.find(el => el.id === idToEdit)
@@ -33,6 +33,7 @@ const Menu = () => {
           handleDelete={handleDeleteProduct}
           handleSelect={() => handleSelectedProduct(item.id)}
           id={item.id}
+          version={adminMode && productSelected.id === item.id ? 'orangeBackground' : 'normal'}
         />
       ))}
       {menuData.length === 0 && <EmptyMenu />}

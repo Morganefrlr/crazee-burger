@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
 
 import AdminContext from "../../../context/AdminContext";
-import { useState } from "react";
+import {  useState } from "react";
 import { fakeMenu2 } from "../../../utils/Data";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 
@@ -32,10 +32,17 @@ const OrderPage = () => {
     setMenuData(menuUpdated);
   };
 
-  const handleDelete = (idToDelete) => {
+  const handleDelete =  (idToDelete) => {
     const menuCopy = JSON.parse(JSON.stringify(menuData));
     const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
     setMenuData(menuUpdated);
+    
+    if(idToDelete === productSelected.id){
+      console.log('ok')
+      setProductSelected(EMPTY_PRODUCT)
+    }
+
+    
   };
 
   const handleEdit = (productToEdit) => {
@@ -68,6 +75,7 @@ const OrderPage = () => {
     handleDelete,
     handleGenerate,
     handleEdit,
+
   };
 
   ///////////////////////////////////////////////

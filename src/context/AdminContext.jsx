@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { createContext } from "react";
 
 export default createContext({
@@ -23,8 +24,6 @@ export default createContext({
   handleDelete: () => {},
   handleGenerate: () => {},
   handleEdit: () => {},
-
-
 
   addMenuInputsValue: "",
   setAddMenuInputsValue: () => {},

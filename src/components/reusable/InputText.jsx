@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const InputText = ({
+const InputText =  ({
   value,
   onChange,
   icon,

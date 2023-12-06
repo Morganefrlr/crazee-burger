@@ -24,6 +24,8 @@ const EditForm = () => {
     handleEdit(editingProduct);
   };
 
+
+
   return (
     <EditStyled>
       {productSelected !== EMPTY_PRODUCT ? (

@@ -1,31 +1,34 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Price from "./Price";
 import { theme } from "../../../../../theme";
-import { TiDelete } from "react-icons/ti";
 import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
 import ButtonComponent from "../../../../reusable/ButtonComponent";
+import DeleteButton from "./DeleteButton";
 
-const Card = ({ img, title, price, handleDelete, id, handleSelect }) => {
-  const { adminMode } = useContext(AdminContext);
+const Card = ({ img, title, price, id, handleSelect, version = "normal" }) => {
+  const {adminMode, productSelected } = useContext(AdminContext);
 
   return (
-    <CardStyled onClick={handleSelect}>
+    <CardStyled onClick={handleSelect} version={version}>
       {img ? (
         <img src={img} alt={title} />
       ) : (
         <img src="/images/coming-soon.png" alt={title} />
       )}
-      {adminMode && (
-        <div className="deleteIconContainer" onClick={() => handleDelete(id)}>
-          <TiDelete className="icon" />
-        </div>
-      )}
+      <DeleteButton id={id} version={productSelected.id === id ? 'orangeBackground' : 'normal'}/>
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
-          <Price price={price} />
-          <ButtonComponent label={"Ajouter"} version="small" />
+          <Price
+            price={price}
+            version={
+              adminMode && productSelected.id === id ? "orangeBackground" : "normal"
+            }
+          />
+          <ButtonComponent label={"Ajouter"} version={
+              adminMode && productSelected.id === id ? "orangeBackground" : "small"
+            }/>
         </div>
       </div>
     </CardStyled>
@@ -53,20 +56,7 @@ const CardStyled = styled.div`
     height: 145px;
     object-fit: contain;
   }
-  .deleteIconContainer {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    .icon {
-      width: 30px;
-      height: 30px;
-      fill: ${theme.colors.primary};
-      cursor: pointer;
-      &:hover {
-        fill: ${theme.colors.red};
-      }
-    }
-  }
+
   .cardBottom {
     display: flex;
     flex-direction: column;
@@ -87,5 +77,20 @@ const CardStyled = styled.div`
       align-items: center;
     }
   }
+
+  ${({ version }) => extraStyle[version]}
 `;
+
+const extraStyleNormal = css`
+  background: ${theme.colors.white};
+`;
+
+const extraStyleOrange = css`
+  background: ${theme.colors.primary};
+`;
+
+const extraStyle = {
+  orangeBackground: extraStyleOrange,
+  normal: extraStyleNormal,
+};
 export default Card;
