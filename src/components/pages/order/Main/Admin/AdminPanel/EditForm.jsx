@@ -9,7 +9,7 @@ import InputText from "../../../../../reusable/InputText";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const EditForm = () => {
-  const { productSelected, handleEdit, setProductSelected } =
+  const { productSelected, handleEdit, setProductSelected, inputTitleRef} =
     useContext(AdminContext);
   const inputTexts = getInputTextsConfig(productSelected);
 
@@ -42,6 +42,7 @@ const EditForm = () => {
                   onChange={handleChange}
                   {...item}
                   version="product"
+                  ref={item.name === 'title' ? inputTitleRef : null}
                 />
               );
             })}

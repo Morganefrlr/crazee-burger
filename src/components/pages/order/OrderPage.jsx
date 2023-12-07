@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
 
 import AdminContext from "../../../context/AdminContext";
-import {  useState } from "react";
+import {  useRef, useState } from "react";
 import { fakeMenu2 } from "../../../utils/Data";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { deepCloneArray } from "../../../utils/deepCloneArray";
@@ -26,6 +26,7 @@ const OrderPage = () => {
   const [tabSelected, setTabSelected] = useState("add");
   const [menuData, setMenuData] = useState(fakeMenu2);
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
+  const inputTitleRef = useRef()
 
   const handleAdd = (newProduct) => {
    const menuClone = deepCloneArray(menuData)
@@ -76,6 +77,7 @@ const OrderPage = () => {
     handleDelete,
     handleGenerate,
     handleEdit,
+    inputTitleRef,
 
   };
 

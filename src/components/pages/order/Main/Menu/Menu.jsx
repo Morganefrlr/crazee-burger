@@ -7,20 +7,24 @@ import AdminContext from "../../../../../context/AdminContext";
 const Menu = () => {
 
   
-  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode } = useContext(AdminContext);
+  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode, inputTitleRef } = useContext(AdminContext);
 
   const handleDeleteProduct = (idToDelete) => {
     handleDelete(idToDelete)
   };
 
-  const handleSelectedProduct = (idToEdit) => {
-    setIsCollapsed(false)
-    setTabSelected('edit')
+  const handleSelectedProduct = async(idToEdit) => {
+    await setIsCollapsed(false)
+    await setTabSelected('edit')
     const productToEdit = menuData.find(el => el.id === idToEdit)
-    setProductSelected(productToEdit)
+    await setProductSelected(productToEdit)
+
+    inputTitleRef.current.focus()
+
   }
 
   const checkIfSelected = (idSelected, idToCheck) =>{
+    if(!adminMode) return
     return idSelected === idToCheck
   }
 

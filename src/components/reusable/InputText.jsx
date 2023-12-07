@@ -2,21 +2,21 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const InputText =  ({
+const InputText = React.forwardRef(({
   value,
   onChange,
   icon,
   name,
   version = "normal",
   ...extraProps
-}) => {
+}, ref) => {
   return (
     <InputStyled version={version}>
       {icon && icon}
-      <input {...extraProps} value={value} name={name} onChange={onChange} />
+      <input {...extraProps} value={value} name={name} onChange={onChange} ref={ref}/>
     </InputStyled>
   );
-};
+});
 
 const InputStyled = styled.div`
   display: flex;

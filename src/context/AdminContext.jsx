@@ -27,4 +27,7 @@ export default createContext({
 
   addMenuInputsValue: "",
   setAddMenuInputsValue: () => {},
+
+
+  inputTitleRef : {},
 });
