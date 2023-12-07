@@ -3,7 +3,7 @@ import { theme } from "../../../../../../theme";
 
 const ImageContainer = ({ imageSource, title }) => {
   return (
-    <ImageContainerStyled className="imageContainer">
+    <ImageContainerStyled className={imageSource ? '' : "cadre"}>
       {imageSource ? (
         <img src={imageSource} alt={title} />
       ) : (
@@ -14,7 +14,9 @@ const ImageContainer = ({ imageSource, title }) => {
 };
 
 const ImageContainerStyled = styled.div`
-  border: 1px solid ${theme.colors.greyLight};
+  &.cadre{
+    border: 1px solid ${theme.colors.greyLight};
+  }
   border-radius: 5px;
   height: 118px;
   width: 215px;

@@ -1,11 +1,8 @@
-import styled from "styled-components";
-import { theme } from "../../../../../../theme";
-import EditFormEmpty from "./EditFormEmpty";
 import { useContext } from "react";
 import AdminContext from "../../../../../../context/AdminContext";
-import ImageContainer from "./ImageContainer";
 import { getInputTextsConfig } from "./inputTextConfig";
-import InputText from "../../../../../reusable/InputText";
+import Form from "./Form";
+import EditInfoMessage from "./EditInfoMessage";
 
 const EditForm = () => {
   const { productSelected, handleEdit, setProductSelected, inputTitleRef } =
@@ -24,60 +21,15 @@ const EditForm = () => {
   };
 
   return (
-    <EditStyled>
-      <ImageContainer
-        imageSource={productSelected.imageSource}
-        title={productSelected.title}
-      />
-      <form action="submit">
-        {inputTexts.map((item) => {
-          return (
-            <InputText
-              key={item.id}
-              onChange={handleChange}
-              {...item}
-              version="product"
-              ref={item.name === "title" ? inputTitleRef : null}
-            />
-          );
-        })}
-      </form>
-    </EditStyled>
+    <Form
+      newProduct={productSelected}
+      inputTexts={inputTexts}
+      handleChange={handleChange}
+      ref={inputTitleRef}
+    >
+      <EditInfoMessage />
+    </Form>
   );
 };
 
-const EditStyled = styled.div`
-  display: flex;
-  padding-top: 30px;
-  padding-left: 71px;
-  gap: 20px;
-  width: 100%;
-  .imageContainer {
-    border: 1px solid ${theme.colors.greyLight};
-    border-radius: 5px;
-    height: 118px;
-    width: 215px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${theme.colors.greySemiDark};
-    img {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-    }
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 50%;
-
-    .buttonContainer {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-  }
-`;
 export default EditForm;
