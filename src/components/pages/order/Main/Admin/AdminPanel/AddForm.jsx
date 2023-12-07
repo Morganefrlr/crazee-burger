@@ -74,11 +74,6 @@ const AddProductStyled = styled.div`
   padding-left: 71px;
   gap: 20px;
   width: 100%;
-  background-color: ${theme.colors.white};
-  height: 240px;
-  border: 1px solid ${theme.colors.greyLight};
-  box-shadow: 0px -6px 8px -2px #0000001a;
-
   .imageContainer {
     border: 1px solid ${theme.colors.greyLight};
     border-radius: 5px;

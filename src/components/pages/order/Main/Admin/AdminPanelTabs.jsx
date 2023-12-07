@@ -6,8 +6,10 @@ import AdminContext from "../../../../../context/AdminContext";
 import { tabsConfig } from "./tabsConfig";
 
 const AdminPanelTabs = () => {
+
+
   const { tabSelected,setTabSelected, isCollapsed, setIsCollapsed } = useContext(AdminContext);
-  const tabs = tabsConfig;
+  const tabs = tabsConfig();
 
 
   

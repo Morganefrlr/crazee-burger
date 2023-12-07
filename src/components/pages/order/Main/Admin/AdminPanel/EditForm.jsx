@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import EditFormEmpty from "./EditFormEmpty";
-import { useContext} from "react";
+import { useContext } from "react";
 import AdminContext from "../../../../../../context/AdminContext";
 import ImageContainer from "./ImageContainer";
 import { getInputTextsConfig } from "./inputTextConfig";
 import InputText from "../../../../../reusable/InputText";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const EditForm = () => {
-  const { productSelected, handleEdit, setProductSelected, inputTitleRef} =
+  const { productSelected, handleEdit, setProductSelected, inputTitleRef } =
     useContext(AdminContext);
   const inputTexts = getInputTextsConfig(productSelected);
 
@@ -24,33 +23,25 @@ const EditForm = () => {
     handleEdit(editingProduct);
   };
 
-
-
   return (
     <EditStyled>
-      {productSelected !== EMPTY_PRODUCT ? (
-        <>
-          <ImageContainer
-            imageSource={productSelected.imageSource}
-            title={productSelected.title}
-          />
-          <form action="submit">
-            {inputTexts.map((item) => {
-              return (
-                <InputText
-                  key={item.id}
-                  onChange={handleChange}
-                  {...item}
-                  version="product"
-                  ref={item.name === 'title' ? inputTitleRef : null}
-                />
-              );
-            })}
-          </form>
-        </>
-      ) : (
-        <EditFormEmpty />
-      )}
+      <ImageContainer
+        imageSource={productSelected.imageSource}
+        title={productSelected.title}
+      />
+      <form action="submit">
+        {inputTexts.map((item) => {
+          return (
+            <InputText
+              key={item.id}
+              onChange={handleChange}
+              {...item}
+              version="product"
+              ref={item.name === "title" ? inputTitleRef : null}
+            />
+          );
+        })}
+      </form>
     </EditStyled>
   );
 };
@@ -61,11 +52,6 @@ const EditStyled = styled.div`
   padding-left: 71px;
   gap: 20px;
   width: 100%;
-  background-color: ${theme.colors.white};
-  height: 240px;
-  border: 1px solid ${theme.colors.greyLight};
-  box-shadow: 0px -6px 8px -2px #0000001a;
-
   .imageContainer {
     border: 1px solid ${theme.colors.greyLight};
     border-radius: 5px;
