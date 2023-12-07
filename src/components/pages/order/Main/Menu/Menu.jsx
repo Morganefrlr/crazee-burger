@@ -3,13 +3,14 @@ import styled from "styled-components";
 import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 const Menu = () => {
 
   
   const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode, inputTitleRef } = useContext(AdminContext);
 
-  const handleDeleteProduct = (idToDelete) => {
+  const handleDeleteProduct =  (idToDelete) => {
     handleDelete(idToDelete)
   };
 

@@ -38,13 +38,10 @@ const OrderPage = () => {
     const menuClone = deepCloneArray(menuData)
     const menuUpdated = menuClone.filter((el) => el.id !== idToDelete);
     setMenuData(menuUpdated);
-    
-    if(idToDelete === productSelected.id){
-      console.log('ok')
-      setProductSelected(EMPTY_PRODUCT)
-    }
 
-    
+    idToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
+    inputTitleRef.current.focus()
+  
   };
 
   const handleEdit = (productToEdit) => {
