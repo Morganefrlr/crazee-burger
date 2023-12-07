@@ -3,15 +3,31 @@ import styled from "styled-components";
 import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 const Menu = () => {
 
   
-  const { menuData, handleDelete } = useContext(AdminContext);
+  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode, inputTitleRef } = useContext(AdminContext);
 
-  const handleDeleteProduct = (idToDelete) => {
+  const handleDeleteProduct =  (idToDelete) => {
     handleDelete(idToDelete)
   };
+
+  const handleSelectedProduct = async(idToEdit) => {
+    await setIsCollapsed(false)
+    await setTabSelected('edit')
+    const productToEdit = menuData.find(el => el.id === idToEdit)
+    await setProductSelected(productToEdit)
+
+    inputTitleRef.current.focus()
+
+  }
+
+  const checkIfSelected = (idSelected, idToCheck) =>{
+    if(!adminMode) return
+    return idSelected === idToCheck
+  }
 
   return (
     <MenuStyled className={menuData.length === 0 ? "emptyMenu" : ""}>
@@ -21,8 +37,12 @@ const Menu = () => {
           img={item.imageSource}
           title={item.title}
           price={item.price}
-          onClick={handleDeleteProduct}
+          handleDelete={handleDeleteProduct}
+          handleSelect={() => handleSelectedProduct(item.id)}
           id={item.id}
+          isHoverable={adminMode}
+          isSelected={checkIfSelected(productSelected.id,item.id)}
+          
         />
       ))}
       {menuData.length === 0 && <EmptyMenu />}

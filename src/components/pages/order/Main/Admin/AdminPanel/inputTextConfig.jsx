@@ -1,22 +1,9 @@
-import { AiOutlinePlus } from "react-icons/ai";
+
 import { FaHamburger } from "react-icons/fa";
-import { MdModeEditOutline, MdOutlineEuro } from "react-icons/md";
+import { MdOutlineEuro } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
 
-export const tabsData = (tabSelected) => [
-  {
-    id: "add",
-    label: "Ajouter un produit",
-    icon: <AiOutlinePlus />,
-    className: tabSelected === "add" ? "isActive" : "",
-  },
-  {
-    id: "edit",
-    label: "Modifier un produit",
-    icon: <MdModeEditOutline />,
-    className: tabSelected === "edit" ? "isActive" : "",
-  },
-];
+
 
 export const getInputTextsConfig = (product) => [
   {

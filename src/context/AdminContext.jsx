@@ -1,32 +1,33 @@
+import { useRef } from "react";
 import { createContext } from "react";
 
-export default createContext ({
-    adminMode: false,
-    setAdminMode: () => {},
+export default createContext({
+  adminMode: false,
+  setAdminMode: () => {},
 
-    openAdminPanel: false,
-    setOpenAdminPanel: () => {},
+  isCollapsed: false,
+  setIsCollapsed: () => {},
+
+  tabSelected: "add",
+  setTabSelected: () => {},
+
+  newProduct: {},
+  setNewProduct: () => {},
+
+  productSelected:{},
+  setProductSelected: () => {},
+
+  menuData: [],
+  setMenuData: () => {},
+
+  handleAdd: () => {},
+  handleDelete: () => {},
+  handleGenerate: () => {},
+  handleEdit: () => {},
+
+  addMenuInputsValue: "",
+  setAddMenuInputsValue: () => {},
 
 
-
-    openAddProduct: true,
-    setOpenAddProduct: () => {},
-
-    openEditProduct:false,
-    setOpenEditProduct: () => {},
-
-    tabSelected:'add',
-    setTabSelected: () =>{},
-
-
-    menuData:[],
-    setMenuData: () =>{},
-
-    handleAdd : () =>{},
-    handleDelete : () =>{},
-    handleGenerate: () =>{},
-
-    addMenuInputsValue:'',
-    setAddMenuInputsValue: () =>{},
-
-})
+  inputTitleRef : {},
+});

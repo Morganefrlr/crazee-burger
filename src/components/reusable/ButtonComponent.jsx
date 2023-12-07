@@ -2,9 +2,9 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const ButtonComponent = ({ icon, label, onClick, version = "normal" }) => {
+const ButtonComponent = ({ icon, label, onClick,className, version = "normal" }) => {
   return (
-    <ButtonStyled version={version} onClick={onClick}>
+    <ButtonStyled version={version} className={className} onClick={onClick}>
       <span>{label}</span>
       {icon && icon}
     </ButtonStyled>
@@ -80,6 +80,6 @@ const extraStyle = {
   large: extraSytleLarge,
   success: extraStyleSuccess,
   small: extraStyleSmall,
-  normal: extraStyleNormal
+  normal: extraStyleNormal,
 };
 export default ButtonComponent;

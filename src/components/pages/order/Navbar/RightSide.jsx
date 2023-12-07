@@ -8,7 +8,7 @@ import AdminContext from "../../../../context/AdminContext";
 
 const RightSide = ({ name }) => {
   const [adminModeBtn, setAdminModeBtn] = useState(false);
-  const{setAdminMode} = useContext(AdminContext)
+  const{setAdminMode, setIsCollapsed} = useContext(AdminContext)
 
   const displayToast = () => {
     setAdminModeBtn(!adminModeBtn);
@@ -16,11 +16,13 @@ const RightSide = ({ name }) => {
       toast.info("Mode admin activé", {
         closeOnClick: true,
       });
+      setIsCollapsed(true)
       setAdminMode(true)
     } else{
       setAdminMode(false)
     }
   };
+
   return (
     <RightSideStyled>
       <ToggleButton 

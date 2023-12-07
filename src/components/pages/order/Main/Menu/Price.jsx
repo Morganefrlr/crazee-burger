@@ -1,13 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
+import { formatPrice } from "../../../../../utils/math";
 
-const Price = ({ price }) => {
-  const newPrice = (price) => {
+const Price = ({ price,className, version='normal' }) => {
+
+  
+ /* const newPrice = (price) => {
     let priceRound = parseFloat(price).toFixed(2);
     return `${priceRound}`.replace(".", ",");
-  };
+  };*/
 
-  return <PriceStyled>{newPrice(price)} €</PriceStyled>;
+  return <PriceStyled version={version} className={className}>{formatPrice(price)}</PriceStyled>;
 };
 
 const PriceStyled = styled.div`
@@ -15,6 +18,8 @@ const PriceStyled = styled.div`
   font-size: 16px;
   color: ${theme.colors.primary};
   text-align: left;
+  
 `;
+
 
 export default Price;

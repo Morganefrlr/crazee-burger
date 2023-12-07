@@ -1,4 +1,4 @@
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import styled from "styled-components";
 import { theme } from "../../../theme";
@@ -7,57 +7,63 @@ import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
 
 import AdminContext from "../../../context/AdminContext";
-import { useState } from "react";
+import {  useRef, useState } from "react";
 import { fakeMenu2 } from "../../../utils/Data";
-
-
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepCloneArray } from "../../../utils/deepCloneArray";
 
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
+
   
+  /////////////////////////////////////////////// ADMIN CONTEXT ///////////////////////////////////////////////
 
+  const [adminMode, setAdminMode] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const [tabSelected, setTabSelected] = useState("add");
+  const [menuData, setMenuData] = useState(fakeMenu2);
+  const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
+  const inputTitleRef = useRef()
 
+  const handleAdd = (newProduct) => {
+   const menuClone = deepCloneArray(menuData)
+    const menuUpdated = [newProduct, ...menuClone];
+    setMenuData(menuUpdated);
+  };
 
-  ///// Admin Context /////
+  const handleDelete =  (idToDelete) => {
+    const menuClone = deepCloneArray(menuData)
+    const menuUpdated = menuClone.filter((el) => el.id !== idToDelete);
+    setMenuData(menuUpdated);
 
+    idToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
+    inputTitleRef.current.focus()
+  
+  };
 
-  const [adminMode, setAdminMode] = useState(false)
-  const [openAdminPanel, setOpenAdminPanel] = useState(false)
-  const [openAddProduct,  setOpenAddProduct] = useState(true)
-  const [openEditProduct, setOpenEditProduct] = useState(false)
-  const [tabSelected, setTabSelected] = useState('add')
-  const [menuData, setMenuData] = useState(fakeMenu2)
-  const [addMenuInputsValue, setAddMenuInputsValue] = useState("")
+  const handleEdit = (productToEdit) => {
+    const menuClone = deepCloneArray(menuData)
+    const indexProduct = menuClone.findIndex((el) => el.id === productToEdit.id);
+    menuClone[indexProduct] = productToEdit;
+    setMenuData(menuClone);
+  };
 
-
-  const handleAdd = (newProduct) =>{
-
-    const menuCopy = [...menuData]
-    const menuUpdated = [newProduct, ...menuCopy]
-    setMenuData(menuUpdated)
-  }
-
-  const handleDelete = (idToDelete) =>{
-    const menuCopy = [...menuData]
-    const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
-    setMenuData(menuUpdated)
-
-  }
-
-const handleGenerate = () =>{
-  setMenuData(fakeMenu2)
-}
+  const handleGenerate = () => {
+    setMenuData(fakeMenu2);
+  };
 
   const adminProviderValue = {
-    adminMode,  
-    setAdminMode, 
-    openAdminPanel,
-    setOpenAdminPanel,
-    openAddProduct, 
-    setOpenAddProduct, 
-    openEditProduct,
-    setOpenEditProduct,
+    adminMode,
+    setAdminMode,
+    isCollapsed,
+    setIsCollapsed,
+    newProduct,
+    setNewProduct,
+    productSelected,
+    setProductSelected,
     tabSelected,
     setTabSelected,
     menuData,
@@ -67,12 +73,13 @@ const handleGenerate = () =>{
     handleAdd,
     handleDelete,
     handleGenerate,
-  }
+    handleEdit,
+    inputTitleRef,
 
+  };
 
-///////////////////////////////////////////////
+  ///////////////////////////////////////////////
 
-  
   return (
     <OrderMainStyled>
       <AdminContext.Provider value={adminProviderValue}>
@@ -83,9 +90,6 @@ const handleGenerate = () =>{
     </OrderMainStyled>
   );
 };
-
-
-
 
 const OrderMainStyled = styled.div`
   width: 100vw;
