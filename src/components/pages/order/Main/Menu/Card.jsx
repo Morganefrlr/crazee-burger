@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 import Price from "./Price";
 import { theme } from "../../../../../theme";
-import { useContext } from "react";
-import AdminContext from "../../../../../context/AdminContext";
 import ButtonComponent from "../../../../reusable/ButtonComponent";
 import DeleteButton from "./DeleteButton";
 
@@ -36,6 +34,7 @@ const Card = ({
             label={"Ajouter"}
             version="small"
             className="buttonPrimary"
+            onClick={(e) => e.stopPropagation()}
           />
         </div>
       </div>
@@ -84,7 +83,7 @@ const CardStyled = styled.div`
       align-items: center;
     }
   }
-  ${({ isHoverable, isSelected }) => isHoverable && isSelected && selectedStyle}
+  ${({ isSelected }) => isSelected && selectedStyle}
 `;
 
 const hoverableStyle = css`

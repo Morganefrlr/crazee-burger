@@ -7,7 +7,8 @@ import { theme } from "../../../../../theme";
 const DeleteButton = ({ id, className}) => {
   const { adminMode, handleDelete } = useContext(AdminContext);
 
-  const handleDeleteProduct = (idToDelete) => {
+  const handleDeleteProduct = (idToDelete,e) => {
+    e.stopPropagation()
     handleDelete(idToDelete);
   };
 
@@ -16,7 +17,7 @@ const DeleteButton = ({ id, className}) => {
       {adminMode && (
         <DeleteButtonStyled
           className={className}
-          onClick={() => handleDeleteProduct(id)}
+          onClick={(e) => handleDeleteProduct(id,e)}
         >
           <TiDelete className="icon" />
         </DeleteButtonStyled>
