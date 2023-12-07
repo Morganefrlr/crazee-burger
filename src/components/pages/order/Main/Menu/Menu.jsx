@@ -18,8 +18,10 @@ const Menu = () => {
     setTabSelected('edit')
     const productToEdit = menuData.find(el => el.id === idToEdit)
     setProductSelected(productToEdit)
+  }
 
-    
+  const checkIfSelected = (idSelected, idToCheck) =>{
+    return idSelected === idToCheck
   }
 
   return (
@@ -34,6 +36,7 @@ const Menu = () => {
           handleSelect={() => handleSelectedProduct(item.id)}
           id={item.id}
           isHoverable={adminMode}
+          isSelected={checkIfSelected(productSelected.id,item.id)}
           
         />
       ))}

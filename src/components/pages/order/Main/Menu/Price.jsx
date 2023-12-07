@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/math";
 
-const Price = ({ price, version='normal' }) => {
+const Price = ({ price,className, version='normal' }) => {
 
   
  /* const newPrice = (price) => {
@@ -10,7 +10,7 @@ const Price = ({ price, version='normal' }) => {
     return `${priceRound}`.replace(".", ",");
   };*/
 
-  return <PriceStyled version={version}>{formatPrice(price)}</PriceStyled>;
+  return <PriceStyled version={version} className={className}>{formatPrice(price)}</PriceStyled>;
 };
 
 const PriceStyled = styled.div`
@@ -18,19 +18,8 @@ const PriceStyled = styled.div`
   font-size: 16px;
   color: ${theme.colors.primary};
   text-align: left;
-  ${({ version }) => extraStyle[version]}
+  
 `;
 
-const extraStyleNormal = css`
-  color: ${theme.colors.primary};
-`;
 
-const extraStyleOrange = css`
-  color: ${theme.colors.white};
-`;
-
-const extraStyle = {
-  orangeBackground: extraStyleOrange,
-  normal: extraStyleNormal
-};
 export default Price;

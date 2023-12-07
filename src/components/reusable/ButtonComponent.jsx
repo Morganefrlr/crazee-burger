@@ -2,9 +2,9 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const ButtonComponent = ({ icon, label, onClick, version = "normal" }) => {
+const ButtonComponent = ({ icon, label, onClick,className, version = "normal" }) => {
   return (
-    <ButtonStyled version={version} onClick={onClick}>
+    <ButtonStyled version={version} className={className} onClick={onClick}>
       <span>{label}</span>
       {icon && icon}
     </ButtonStyled>
@@ -76,27 +76,10 @@ const extraSytleLarge = css`
   height: 53px;
 `;
 
-const extraSytleOrange = css`
-  flex: 1;
-  height: 38px;
-  font-size: 11px;
-  background-color: ${theme.colors.white};
-  color:${theme.colors.primary};
-  &:hover {
-    border: 1px solid ${theme.colors.white};
-    background-color: ${theme.colors.primary};
-    color:${theme.colors.white};
-  }
-  &:focus {
-    background-color: ${theme.colors.white};
-    color:${theme.colors.primary};
-  }
-`;
 const extraStyle = {
   large: extraSytleLarge,
   success: extraStyleSuccess,
   small: extraStyleSmall,
   normal: extraStyleNormal,
-  orangeBackground: extraSytleOrange,
 };
 export default ButtonComponent;

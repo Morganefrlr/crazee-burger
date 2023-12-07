@@ -6,38 +6,36 @@ import AdminContext from "../../../../../context/AdminContext";
 import ButtonComponent from "../../../../reusable/ButtonComponent";
 import DeleteButton from "./DeleteButton";
 
-const Card = ({ img, title, price, id, handleSelect, isHoverable }) => {
-  const { adminMode, productSelected } = useContext(AdminContext);
+const Card = ({
+  img,
+  title,
+  price,
+  id,
+  handleSelect,
+  isHoverable,
+  isSelected,
+}) => {
 
   return (
-    <CardStyled onClick={handleSelect} isHoverable={adminMode}>
+    <CardStyled
+      onClick={handleSelect}
+      isHoverable={isHoverable}
+      isSelected={isSelected}
+    >
       {img ? (
         <img src={img} alt={title} />
       ) : (
         <img src="/images/coming-soon.png" alt={title} />
       )}
-      <DeleteButton
-        id={id}
-        version={productSelected.id === id ? "orangeBackground" : "normal"}
-      />
+      <DeleteButton id={id} className="buttonDelete" />
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
-          <Price
-            price={price}
-            version={
-              adminMode && productSelected.id === id
-                ? "orangeBackground"
-                : "normal"
-            }
-          />
+          <Price price={price} className="priceCard" />
           <ButtonComponent
             label={"Ajouter"}
-            version={
-              adminMode && productSelected.id === id
-                ? "orangeBackground"
-                : "small"
-            }
+            version="small"
+            className="buttonPrimary"
           />
         </div>
       </div>
@@ -46,7 +44,7 @@ const Card = ({ img, title, price, id, handleSelect, isHoverable }) => {
 };
 
 const CardStyled = styled.div`
-  
+  ${({ isHoverable }) => isHoverable && hoverableStyle}
   width: 240px;
   height: 330px;
   border-radius: 15px;
@@ -86,12 +84,45 @@ const CardStyled = styled.div`
       align-items: center;
     }
   }
-  
+  ${({ isHoverable, isSelected }) => isHoverable && isSelected && selectedStyle}
 `;
 
 const hoverableStyle = css`
   &:hover {
     box-shadow: 0 0 8px 0 ${theme.colors.primary};
+    transform: scale(1.05);
+    transition: all 400ms ease;
+  }
+`;
+
+const selectedStyle = css`
+  background: ${theme.colors.primary};
+  .priceCard {
+    color: ${theme.colors.white};
+  }
+  .buttonDelete {
+    .icon {
+      fill: ${theme.colors.white};
+      &:hover {
+        fill: ${theme.colors.red};
+      }
+      &:active {
+        fill: ${theme.colors.white};
+      }
+    }
+  }
+  .buttonPrimary {
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    &:hover {
+      border: 1px solid ${theme.colors.white};
+      background-color: ${theme.colors.primary};
+      color: ${theme.colors.white};
+    }
+    &:focus {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.primary};
+    }
   }
 `;
 
