@@ -10,6 +10,7 @@ import AdminContext from "../../../context/AdminContext";
 import {  useState } from "react";
 import { fakeMenu2 } from "../../../utils/Data";
 import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepCloneArray } from "../../../utils/deepCloneArray";
 
 const OrderPage = () => {
   const params = useParams();
@@ -27,14 +28,14 @@ const OrderPage = () => {
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
 
   const handleAdd = (newProduct) => {
-    const menuCopy = JSON.parse(JSON.stringify(menuData));
-    const menuUpdated = [newProduct, ...menuCopy];
+   const menuClone = deepCloneArray(menuData)
+    const menuUpdated = [newProduct, ...menuClone];
     setMenuData(menuUpdated);
   };
 
   const handleDelete =  (idToDelete) => {
-    const menuCopy = JSON.parse(JSON.stringify(menuData));
-    const menuUpdated = menuCopy.filter((el) => el.id !== idToDelete);
+    const menuClone = deepCloneArray(menuData)
+    const menuUpdated = menuClone.filter((el) => el.id !== idToDelete);
     setMenuData(menuUpdated);
     
     if(idToDelete === productSelected.id){
@@ -46,10 +47,10 @@ const OrderPage = () => {
   };
 
   const handleEdit = (productToEdit) => {
-    const menuCopy = JSON.parse(JSON.stringify(menuData));
-    const indexProduct = menuCopy.findIndex((el) => el.id === productToEdit.id);
-    menuCopy[indexProduct] = productToEdit;
-    setMenuData(menuCopy);
+    const menuClone = deepCloneArray(menuData)
+    const indexProduct = menuClone.findIndex((el) => el.id === productToEdit.id);
+    menuClone[indexProduct] = productToEdit;
+    setMenuData(menuClone);
   };
 
   const handleGenerate = () => {

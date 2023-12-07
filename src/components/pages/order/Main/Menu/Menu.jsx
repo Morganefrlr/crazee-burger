@@ -33,7 +33,8 @@ const Menu = () => {
           handleDelete={handleDeleteProduct}
           handleSelect={() => handleSelectedProduct(item.id)}
           id={item.id}
-          version={adminMode && productSelected.id === item.id ? 'orangeBackground' : 'normal'}
+          isHoverable={adminMode}
+          
         />
       ))}
       {menuData.length === 0 && <EmptyMenu />}

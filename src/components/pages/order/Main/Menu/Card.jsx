@@ -6,29 +6,39 @@ import AdminContext from "../../../../../context/AdminContext";
 import ButtonComponent from "../../../../reusable/ButtonComponent";
 import DeleteButton from "./DeleteButton";
 
-const Card = ({ img, title, price, id, handleSelect, version = "normal" }) => {
-  const {adminMode, productSelected } = useContext(AdminContext);
+const Card = ({ img, title, price, id, handleSelect, isHoverable }) => {
+  const { adminMode, productSelected } = useContext(AdminContext);
 
   return (
-    <CardStyled onClick={handleSelect} version={version}>
+    <CardStyled onClick={handleSelect} isHoverable={adminMode}>
       {img ? (
         <img src={img} alt={title} />
       ) : (
         <img src="/images/coming-soon.png" alt={title} />
       )}
-      <DeleteButton id={id} version={productSelected.id === id ? 'orangeBackground' : 'normal'}/>
+      <DeleteButton
+        id={id}
+        version={productSelected.id === id ? "orangeBackground" : "normal"}
+      />
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
           <Price
             price={price}
             version={
-              adminMode && productSelected.id === id ? "orangeBackground" : "normal"
+              adminMode && productSelected.id === id
+                ? "orangeBackground"
+                : "normal"
             }
           />
-          <ButtonComponent label={"Ajouter"} version={
-              adminMode && productSelected.id === id ? "orangeBackground" : "small"
-            }/>
+          <ButtonComponent
+            label={"Ajouter"}
+            version={
+              adminMode && productSelected.id === id
+                ? "orangeBackground"
+                : "small"
+            }
+          />
         </div>
       </div>
     </CardStyled>
@@ -36,6 +46,7 @@ const Card = ({ img, title, price, id, handleSelect, version = "normal" }) => {
 };
 
 const CardStyled = styled.div`
+  
   width: 240px;
   height: 330px;
   border-radius: 15px;
@@ -48,9 +59,7 @@ const CardStyled = styled.div`
   padding: 50px 20px 30px 20px;
   position: relative;
   cursor: pointer;
-  &:hover {
-    box-shadow: 0 0 8px 0 ${theme.colors.primary};
-  }
+
   img {
     width: 200px;
     height: 145px;
@@ -77,20 +86,13 @@ const CardStyled = styled.div`
       align-items: center;
     }
   }
-
-  ${({ version }) => extraStyle[version]}
+  
 `;
 
-const extraStyleNormal = css`
-  background: ${theme.colors.white};
+const hoverableStyle = css`
+  &:hover {
+    box-shadow: 0 0 8px 0 ${theme.colors.primary};
+  }
 `;
 
-const extraStyleOrange = css`
-  background: ${theme.colors.primary};
-`;
-
-const extraStyle = {
-  orangeBackground: extraStyleOrange,
-  normal: extraStyleNormal,
-};
 export default Card;

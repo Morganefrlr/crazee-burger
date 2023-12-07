@@ -1,15 +1,16 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
+import { formatPrice } from "../../../../../utils/math";
 
 const Price = ({ price, version='normal' }) => {
 
   
-  const newPrice = (price) => {
+ /* const newPrice = (price) => {
     let priceRound = parseFloat(price).toFixed(2);
     return `${priceRound}`.replace(".", ",");
-  };
+  };*/
 
-  return <PriceStyled version={version}>{newPrice(price)} €</PriceStyled>;
+  return <PriceStyled version={version}>{formatPrice(price)}</PriceStyled>;
 };
 
 const PriceStyled = styled.div`
