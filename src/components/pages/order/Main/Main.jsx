@@ -3,12 +3,15 @@ import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
 import AdminContext from "../../../../context/AdminContext";
+import Cart from "./Cart/Cart";
 
 const Main = () => {
   const {adminMode} = useContext(AdminContext)
   return (
     <MainStyled>
-      <div className="cart">test</div>
+      <div className="cart">
+        <Cart/>
+      </div>
       <div className="container_MenuAdmin">
         <Menu />
         {adminMode && <Admin/>}
@@ -45,7 +48,7 @@ const MainStyled = styled.div`
 
   
   .cart{
-    display: none;
+    display: flex,
   }
 `;
 
