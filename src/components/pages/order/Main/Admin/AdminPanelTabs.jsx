@@ -40,7 +40,7 @@ const AdminPanelTabs = () => {
 const TabsStyled = styled.div`
   display: flex;
   gap: 1px;
-  padding-left: 127px;
+  padding-left: 54px;
   height: 43px;
 `;
 
