@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
+
 
 const Menu = () => {
 
@@ -54,6 +54,7 @@ const MenuStyled = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 60px 85px;
   overflow: scroll;
   padding: 50px 85px;
