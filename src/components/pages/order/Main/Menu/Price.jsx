@@ -18,7 +18,7 @@ const PriceStyled = styled.div`
   font-size: 16px;
   color: ${theme.colors.primary};
   text-align: left;
-  
+  font-weight: 400;
 `;
 
 

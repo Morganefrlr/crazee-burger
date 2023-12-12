@@ -24,6 +24,5 @@ const CartStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 350px;
-  height: 100%;
 `;
 export default Cart;
