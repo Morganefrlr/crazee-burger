@@ -11,7 +11,7 @@ const Card = ({
   id,
   handleSelect,
   isHoverable,
-  isSelected,
+  isSelected
 }) => {
 
   return (

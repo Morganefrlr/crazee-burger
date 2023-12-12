@@ -10,13 +10,9 @@ import { useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 
-
-
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
-
-  
 
   const [adminMode, setAdminMode] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -25,7 +21,8 @@ const OrderPage = () => {
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
 
 
-  const {menuData,
+  const {
+    menuData,
     setMenuData,
     handleAdd,
     handleDelete,
@@ -33,7 +30,8 @@ const OrderPage = () => {
     handleGenerate,
     productSelected,
     setProductSelected,
-    inputTitleRef} = useMenu()
+    inputTitleRef,
+  } = useMenu();
 
   const adminProviderValue = {
     adminMode,

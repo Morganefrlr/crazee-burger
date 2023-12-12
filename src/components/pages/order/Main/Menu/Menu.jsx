@@ -8,7 +8,7 @@ import AdminContext from "../../../../../context/AdminContext";
 const Menu = () => {
 
   
-  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode, inputTitleRef } = useContext(AdminContext);
+  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode, inputTitleRef} = useContext(AdminContext);
 
   const handleDeleteProduct =  (idToDelete) => {
     handleDelete(idToDelete)
@@ -29,7 +29,9 @@ const Menu = () => {
     return idSelected === idToCheck
   }
 
-  return (
+
+
+  return ( 
     <MenuStyled className={menuData.length === 0 ? "emptyMenu" : ""}>
       {menuData.map((item) => (
         <Card

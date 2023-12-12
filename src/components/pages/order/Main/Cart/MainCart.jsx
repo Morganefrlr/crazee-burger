@@ -1,8 +1,11 @@
-import React from "react";
+
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 
+
 const MainCart = () => {
+ 
+  
   return (
     <MainCartStyled>
       <span>Votre commande est vide.</span>
@@ -22,6 +25,10 @@ const MainCartStyled = styled.div`
   span {
     font-family: "Amatic SC", sans-serif;
   }
+
+
+
+
 `;
 
 export default MainCart;
