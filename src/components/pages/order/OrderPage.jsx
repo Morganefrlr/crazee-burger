@@ -9,6 +9,7 @@ import AdminContext from "../../../context/AdminContext";
 import { useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
+import { useCart } from "../../../hooks/useCart";
 
 const OrderPage = () => {
   const params = useParams();
@@ -33,6 +34,8 @@ const OrderPage = () => {
     inputTitleRef,
   } = useMenu();
 
+  const{cart} = useCart()
+
   const adminProviderValue = {
     adminMode,
     setAdminMode,
@@ -53,6 +56,7 @@ const OrderPage = () => {
     handleGenerate,
     handleEdit,
     inputTitleRef,
+    cart,
 
   };
 

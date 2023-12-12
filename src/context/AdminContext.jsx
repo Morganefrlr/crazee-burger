@@ -31,5 +31,6 @@ export default createContext({
 
   inputTitleRef : {},
 
-
+  cart:[],
+  setCart: () => {},
 });
