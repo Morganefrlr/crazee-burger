@@ -5,55 +5,35 @@ import { theme } from "../../../theme";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
-
 import AdminContext from "../../../context/AdminContext";
-import {  useRef, useState } from "react";
-import { fakeMenu2 } from "../../../utils/Data";
+import { useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
-import { deepCloneArray } from "../../../utils/deepCloneArray";
+import { useMenu } from "../../../hooks/useMenu";
+
+
 
 const OrderPage = () => {
   const params = useParams();
   const name = params.id;
 
   
-  /////////////////////////////////////////////// ADMIN CONTEXT ///////////////////////////////////////////////
 
   const [adminMode, setAdminMode] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [tabSelected, setTabSelected] = useState("add");
-  const [menuData, setMenuData] = useState(fakeMenu2);
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
-  const inputTitleRef = useRef()
 
-  const handleAdd = (newProduct) => {
-   const menuClone = deepCloneArray(menuData)
-    const menuUpdated = [newProduct, ...menuClone];
-    setMenuData(menuUpdated);
-  };
 
-  const handleDelete =  (idToDelete) => {
-    const menuClone = deepCloneArray(menuData)
-    const menuUpdated = menuClone.filter((el) => el.id !== idToDelete);
-    setMenuData(menuUpdated);
-
-    idToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
-    inputTitleRef.current.focus()
-  
-  };
-
-  const handleEdit = (productToEdit) => {
-    const menuClone = deepCloneArray(menuData)
-    const indexProduct = menuClone.findIndex((el) => el.id === productToEdit.id);
-    menuClone[indexProduct] = productToEdit;
-    setMenuData(menuClone);
-  };
-
-  const handleGenerate = () => {
-    setMenuData(fakeMenu2);
-  };
+  const {menuData,
+    setMenuData,
+    handleAdd,
+    handleDelete,
+    handleEdit,
+    handleGenerate,
+    productSelected,
+    setProductSelected,
+    inputTitleRef} = useMenu()
 
   const adminProviderValue = {
     adminMode,

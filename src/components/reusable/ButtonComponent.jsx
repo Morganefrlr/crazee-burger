@@ -48,6 +48,7 @@ const extraStyleSuccess = css`
   height: 34px;
   border: 1px solid ${theme.colors.success};
   background-color: ${theme.colors.success};
+  font-size: 13px;
   cursor: pointer;
   &:hover {
     color: ${theme.colors.success};
@@ -74,6 +75,7 @@ const extraStyleNormal = css`
 const extraSytleLarge = css`
   width: 100%;
   height: 53px;
+
 `;
 
 const extraStyle = {
