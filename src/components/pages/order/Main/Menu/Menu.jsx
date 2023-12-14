@@ -15,11 +15,14 @@ const Menu = () => {
     productSelected,
     adminMode,
     inputTitleRef,
-    handleAddProductCart
+    handleAddProductCart,
+    handleDeleteProductInCart
   } = useContext(AdminContext);
 
-  const handleDeleteProduct = (idToDelete) => {
+  const handleDeleteProduct = (e, idToDelete) => {
+    e.stopPropagation()
     handleDelete(idToDelete);
+    handleDeleteProductInCart(idToDelete)
   };
 
   const handleSelectedProduct = async (idToEdit) => {

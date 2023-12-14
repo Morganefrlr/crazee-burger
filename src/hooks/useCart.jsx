@@ -24,5 +24,15 @@ export const useCart = () => {
       setCart(cartClone);
     }
   };
-  return { cart, handleAddProductCart };
+
+
+
+
+  const handleDeleteProductInCart = (idToDelete) => {
+    const cartClone = deepCloneArray(cart);
+    const cartUpdated = cartClone.filter((el) => el.id !== idToDelete)
+
+    setCart(cartUpdated)
+  }
+  return { cart, handleAddProductCart,handleDeleteProductInCart };
 };

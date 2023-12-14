@@ -9,6 +9,7 @@ const Card = ({
   title,
   price,
   id,
+  handleDelete,
   handleSelect,
   isHoverable,
   isSelected,
@@ -26,7 +27,7 @@ const Card = ({
       ) : (
         <img src="/images/coming-soon.png" alt={title} />
       )}
-      <DeleteButton id={id} className="buttonDelete" />
+      <DeleteButton id={id} className="buttonDelete"handleDelete={handleDelete} />
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>

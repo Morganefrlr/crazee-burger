@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Price from "../Menu/Price";
+import { MdDeleteForever } from "react-icons/md";
+import { useContext } from "react";
+import AdminContext from "../../../../../context/AdminContext";
 
 const CartProductCard = ({ product }) => {
+  const {handleDeleteProductInCart} = useContext(AdminContext)
 
-
+  const handleDelete = (idToDelete) =>{
     
+    handleDeleteProductInCart(idToDelete)
+  }
   return (
     <CartProductCardStyled>
       <img src={product.imageSource} alt="" />
@@ -17,6 +23,10 @@ const CartProductCard = ({ product }) => {
 
       <div className="quantityProductCart">
         <span>x {product.quantity}</span>
+      </div>
+
+      <div className="deleteProductCard">
+        <MdDeleteForever className="icon" onClick={() => handleDelete(product.id)}/>
       </div>
     </CartProductCardStyled>
   );
@@ -32,6 +42,7 @@ const CartProductCardStyled = styled.div`
   display: flex;
   gap: 10%;
   align-items: center;
+  position: relative;
 
   padding: 8px 16px;
 
@@ -65,10 +76,51 @@ const CartProductCardStyled = styled.div`
     width: 20%;
     display: flex;
     justify-content: flex-end;
-    span{
-        font-size: 15px;
-        color: ${theme.colors.primary};
+    span {
+      font-size: 15px;
+      color: ${theme.colors.primary};
     }
+  }
+
+  &:hover {
+    .deleteProductCard {
+      cursor: pointer;
+      width: 76px;
+      height: 86px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: ${theme.colors.red};
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .icon {
+        fill: ${theme.colors.white};
+        width: 24px;
+        height: 24px;
+    
+
+      }
+&:hover{
+  .icon{
+          fill: ${theme.colors.dark};
+        }
+}
+      &:active{
+        .icon{
+          fill: ${theme.colors.white};
+        }
+        
+
+      }
+    }
+  }
+
+  .deleteProductCard {
+    display: none;
   }
 `;
 export default CartProductCard;
