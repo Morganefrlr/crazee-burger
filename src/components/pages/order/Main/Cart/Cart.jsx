@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import DarkBox from "./DarkBox";
 import Total from "./Total";
 import Footer from "./Footer";
 import MainCart from "./MainCart";
+import AdminContext from "../../../../../context/AdminContext";
 
 const Cart = () => {
+  const {cart} = useContext(AdminContext)
+
+
+
+  const totalToPay = cart.reduce((total, productToPay) => {
+    total += productToPay.quantity * productToPay.price
+    return total
+  },0)
+
+
+  
   return (
     <CartStyled>
-      <DarkBox> <Total /></DarkBox> 
+      <DarkBox> <Total total={totalToPay}/></DarkBox> 
 
       <MainCart />
 
@@ -24,6 +36,5 @@ const CartStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 350px;
-  height: 100%;
 `;
 export default Cart;

@@ -4,20 +4,17 @@ import AdminContext from "../../../../../context/AdminContext";
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 
-const DeleteButton = ({ id, className}) => {
-  const { adminMode, handleDelete } = useContext(AdminContext);
+const DeleteButton = ({ id, className, handleDelete}) => {
+  const { adminMode } = useContext(AdminContext);
 
-  const handleDeleteProduct = (idToDelete,e) => {
-    e.stopPropagation()
-    handleDelete(idToDelete);
-  };
+  
 
   return (
     <>
       {adminMode && (
         <DeleteButtonStyled
           className={className}
-          onClick={(e) => handleDeleteProduct(id,e)}
+          onClick={(e) => handleDelete(e,id)}
         >
           <TiDelete className="icon" />
         </DeleteButtonStyled>

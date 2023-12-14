@@ -4,11 +4,6 @@ import { formatPrice } from "../../../../../utils/math";
 
 const Price = ({ price,className, version='normal' }) => {
 
-  
- /* const newPrice = (price) => {
-    let priceRound = parseFloat(price).toFixed(2);
-    return `${priceRound}`.replace(".", ",");
-  };*/
 
   return <PriceStyled version={version} className={className}>{formatPrice(price)}</PriceStyled>;
 };
@@ -18,7 +13,7 @@ const PriceStyled = styled.div`
   font-size: 16px;
   color: ${theme.colors.primary};
   text-align: left;
-  
+  font-weight: 400;
 `;
 
 

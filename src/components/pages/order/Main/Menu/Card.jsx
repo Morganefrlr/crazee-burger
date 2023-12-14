@@ -9,9 +9,11 @@ const Card = ({
   title,
   price,
   id,
+  handleDelete,
   handleSelect,
   isHoverable,
   isSelected,
+  handleCart
 }) => {
 
   return (
@@ -25,7 +27,7 @@ const Card = ({
       ) : (
         <img src="/images/coming-soon.png" alt={title} />
       )}
-      <DeleteButton id={id} className="buttonDelete" />
+      <DeleteButton id={id} className="buttonDelete"handleDelete={handleDelete} />
       <div className="cardBottom">
         <h3>{title}</h3>
         <div>
@@ -34,7 +36,7 @@ const Card = ({
             label={"Ajouter"}
             version="small"
             className="buttonPrimary"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => handleCart(e,id)}
           />
         </div>
       </div>

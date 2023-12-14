@@ -3,31 +3,47 @@ import styled from "styled-components";
 import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
-
+import { findInArray } from "../../../../../utils/array";
 
 const Menu = () => {
+  const {
+    menuData,
+    handleDelete,
+    setIsCollapsed,
+    setTabSelected,
+    setProductSelected,
+    productSelected,
+    adminMode,
+    inputTitleRef,
+    handleAddProductCart,
+    handleDeleteProductInCart
+  } = useContext(AdminContext);
 
-  
-  const { menuData, handleDelete, setIsCollapsed,  setTabSelected,setProductSelected, productSelected, adminMode, inputTitleRef } = useContext(AdminContext);
-
-  const handleDeleteProduct =  (idToDelete) => {
-    handleDelete(idToDelete)
+  const handleDeleteProduct = (e, idToDelete) => {
+    e.stopPropagation()
+    handleDelete(idToDelete);
+    handleDeleteProductInCart(idToDelete)
   };
 
-  const handleSelectedProduct = async(idToEdit) => {
-    await setIsCollapsed(false)
-    await setTabSelected('edit')
-    const productToEdit = menuData.find(el => el.id === idToEdit)
-    await setProductSelected(productToEdit)
+  const handleSelectedProduct = async (idToEdit) => {
+    await setIsCollapsed(false);
+    await setTabSelected("edit");
+    const productToEdit = findInArray(idToEdit, menuData);
+    await setProductSelected(productToEdit);
 
-    inputTitleRef.current.focus()
+    inputTitleRef.current.focus();
+  };
 
-  }
+  const checkIfSelected = (idSelected, idToCheck) => {
+    if (!adminMode) return;
+    return idSelected === idToCheck;
+  };
 
-  const checkIfSelected = (idSelected, idToCheck) =>{
-    if(!adminMode) return
-    return idSelected === idToCheck
-  }
+  const SendToCart = (e,idToCart) => {
+    e.stopPropagation();
+    const productToCart = findInArray(idToCart, menuData)
+    handleAddProductCart(productToCart)
+  };
 
   return (
     <MenuStyled className={menuData.length === 0 ? "emptyMenu" : ""}>
@@ -41,8 +57,8 @@ const Menu = () => {
           handleSelect={() => handleSelectedProduct(item.id)}
           id={item.id}
           isHoverable={adminMode}
-          isSelected={checkIfSelected(productSelected.id,item.id)}
-          
+          isSelected={checkIfSelected(productSelected.id, item.id)}
+          handleCart={SendToCart}
         />
       ))}
       {menuData.length === 0 && <EmptyMenu />}

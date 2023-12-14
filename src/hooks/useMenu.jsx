@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { fakeMenu2 } from "../utils/Data";
-import { deepCloneArray } from "../utils/deepCloneArray";
+import { deepCloneArray } from "../utils/array";
 import { EMPTY_PRODUCT } from "../enums/product";
 
 export const useMenu = () => {
