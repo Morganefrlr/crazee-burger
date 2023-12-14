@@ -16,6 +16,7 @@ export const useCart = () => {
         quantity: 1,
       };
       setCart([productToAdd, ...cart]);
+      return
     }
     if (isProductAlreadyInCart) {
       const IndexProduct = findIndexInArray(productToCart.id, cartClone);

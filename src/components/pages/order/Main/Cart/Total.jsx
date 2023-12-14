@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import { formatPrice } from "../../../../../utils/math";
 
-const Total = () => {
+const Total = ({total}) => {
   return (
     <TotalStyled>
       <span>Total</span>
-      <span>0,00 €</span>
+      <span>{formatPrice(total)}</span>
     </TotalStyled>
   );
 };
