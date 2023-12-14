@@ -16,13 +16,13 @@ const Menu = () => {
     adminMode,
     inputTitleRef,
     handleAddProductCart,
-    handleDeleteProductInCart
+    handleDeleteProductInCart,
   } = useContext(AdminContext);
 
   const handleDeleteProduct = (e, idToDelete) => {
-    e.stopPropagation()
+    e.stopPropagation();
     handleDelete(idToDelete);
-    handleDeleteProductInCart(idToDelete)
+    handleDeleteProductInCart(idToDelete);
   };
 
   const handleSelectedProduct = async (idToEdit) => {
@@ -30,8 +30,9 @@ const Menu = () => {
     await setTabSelected("edit");
     const productToEdit = findInArray(idToEdit, menuData);
     await setProductSelected(productToEdit);
-
-    inputTitleRef.current.focus();
+    if (adminMode) {
+      inputTitleRef.current.focus();
+    }
   };
 
   const checkIfSelected = (idSelected, idToCheck) => {
@@ -39,10 +40,10 @@ const Menu = () => {
     return idSelected === idToCheck;
   };
 
-  const SendToCart = (e,idToCart) => {
+  const SendToCart = (e, idToCart) => {
     e.stopPropagation();
-    const productToCart = findInArray(idToCart, menuData)
-    handleAddProductCart(productToCart)
+    const productToCart = findInArray(idToCart, menuData);
+    handleAddProductCart(productToCart);
   };
 
   return (
