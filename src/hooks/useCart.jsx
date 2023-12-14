@@ -34,5 +34,18 @@ export const useCart = () => {
 
     setCart(cartUpdated)
   }
-  return { cart, handleAddProductCart,handleDeleteProductInCart };
+
+
+
+  const handleEditProductInCart = (productToEdit) =>{
+    const cartClone = deepCloneArray(cart);
+    const IndexProduct = findIndexInArray(productToEdit.id, cartClone)
+    cartClone[IndexProduct] = {
+      ...productToEdit,
+      quantity: cart[IndexProduct].quantity
+    };
+
+    setCart(cartClone);
+  }
+  return { cart, handleAddProductCart,handleDeleteProductInCart,handleEditProductInCart };
 };

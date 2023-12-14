@@ -5,7 +5,7 @@ import Form from "./Form";
 import EditInfoMessage from "./EditInfoMessage";
 
 const EditForm = () => {
-  const { productSelected, handleEdit, setProductSelected, inputTitleRef } =
+  const { productSelected, handleEdit, setProductSelected, inputTitleRef,handleEditProductInCart } =
     useContext(AdminContext);
   const inputTexts = getInputTextsConfig(productSelected);
 
@@ -18,6 +18,8 @@ const EditForm = () => {
 
     setProductSelected(editingProduct);
     handleEdit(editingProduct);
+    handleEditProductInCart(editingProduct)
+
   };
 
   return (
