@@ -22,6 +22,9 @@ const MainCartStyled = styled.div`
   align-items: start;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.33);
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
 `;
 

@@ -33,4 +33,6 @@ export default createContext({
 
   cart:[],
   setCart: () => {},
+
+  handleAddProductCart: () =>{},
 });

@@ -11,7 +11,8 @@ const Card = ({
   id,
   handleSelect,
   isHoverable,
-  isSelected
+  isSelected,
+  handleCart
 }) => {
 
   return (
@@ -34,7 +35,7 @@ const Card = ({
             label={"Ajouter"}
             version="small"
             className="buttonPrimary"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => handleCart(e,id)}
           />
         </div>
       </div>

@@ -34,7 +34,7 @@ const OrderPage = () => {
     inputTitleRef,
   } = useMenu();
 
-  const{cart} = useCart()
+  const{cart, handleAddProductCart} = useCart()
 
   const adminProviderValue = {
     adminMode,
@@ -57,7 +57,7 @@ const OrderPage = () => {
     handleEdit,
     inputTitleRef,
     cart,
-
+    handleAddProductCart
   };
 
   ///////////////////////////////////////////////
