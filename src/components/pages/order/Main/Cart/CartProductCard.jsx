@@ -2,18 +2,13 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import Price from "../Menu/Price";
 import { MdDeleteForever } from "react-icons/md";
-import { useContext } from "react";
-import AdminContext from "../../../../../context/AdminContext";
-
-const CartProductCard = ({ product,handleSelect, isSelected, isModeAdmin}) => {
 
 
+const CartProductCard = ({ product,handleSelect, isSelected, isModeAdmin, handleDelete}) => {
 
-  const { handleDeleteProductInCart } = useContext(AdminContext);
 
-  const handleDelete = (idToDelete) => {
-    handleDeleteProductInCart(idToDelete);
-  };
+
+
 
 
 
@@ -33,7 +28,7 @@ const CartProductCard = ({ product,handleSelect, isSelected, isModeAdmin}) => {
       <div className="deleteProductCard">
         <MdDeleteForever
           className="icon"
-          onClick={() => handleDelete(product.id)}
+          onClick={handleDelete}
         />
       </div>
     </CartProductCardStyled>

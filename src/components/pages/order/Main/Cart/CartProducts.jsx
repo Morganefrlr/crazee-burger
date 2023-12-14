@@ -2,7 +2,7 @@ import React from "react";
 import CartProductCard from "./CartProductCard";
 import styled from "styled-components";
 
-const CartProducts = ({ products, handleSelect,isSelected, productSelected, isModeAdmin}) => {
+const CartProducts = ({ products, handleSelect,isSelected, productSelected, isModeAdmin, handleDelete}) => {
 
 
 
@@ -14,6 +14,7 @@ const CartProducts = ({ products, handleSelect,isSelected, productSelected, isMo
         handleSelect={() => handleSelect(item.id)}
         isSelected={isSelected(productSelected.id, item.id)}
         isModeAdmin={isModeAdmin}
+        handleDelete={() => handleDelete(item.id)}
         />
       ))}
     </CartProductsStyled>

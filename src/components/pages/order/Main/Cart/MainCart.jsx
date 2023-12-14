@@ -15,7 +15,13 @@ const MainCart = () => {
     inputTitleRef,
     adminMode,
     productSelected,
+    handleDeleteProductInCart
   } = useContext(AdminContext);
+
+  const handleDelete = (idToDelete) => {
+    handleDeleteProductInCart(idToDelete);
+  };
+
 
 
   const handleSelectedProduct = async (idToEdit) => {
@@ -45,6 +51,7 @@ const MainCart = () => {
       isSelected={checkIfSelected}
       productSelected={productSelected}
       isModeAdmin={adminMode}
+      handleDelete={handleDelete}
       
       /> : <EmptyCart />}
     </MainCartStyled>
