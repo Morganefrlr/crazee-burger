@@ -14,6 +14,7 @@ const Cart = () => {
   } = useContext(AdminContext);
 
   const totalToPay = cart.reduce((total, productToPay) => {
+    if(isNaN(productToPay.price)) return total
     total += productToPay.quantity * productToPay.price;
     return total;
   }, 0);
