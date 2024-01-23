@@ -6,6 +6,7 @@ import { PiUserCircleFill } from "react-icons/pi";
 import { IoIosArrowForward } from "react-icons/io";
 import InputText from "../../reusable/InputText";
 import ButtonComponent from "../../reusable/ButtonComponent";
+import { createUser } from "../../../api/user";
 
 const LoginForm = () => {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createUser(name)
     setName("");
     navigate(`/order/${name}`);
   };
