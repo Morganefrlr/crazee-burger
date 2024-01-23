@@ -6,27 +6,30 @@ import Total from "./Total";
 import Footer from "./Footer";
 import MainCart from "./MainCart";
 import AdminContext from "../../../../../context/AdminContext";
+import { findInArray } from "../../../../../utils/array";
 
 const Cart = () => {
-  const {cart} = useContext(AdminContext)
-
-
+  const {
+    cart
+  } = useContext(AdminContext);
 
   const totalToPay = cart.reduce((total, productToPay) => {
-    total += productToPay.quantity * productToPay.price
-    return total
-  },0)
+    if(isNaN(productToPay.price)) return total
+    total += productToPay.quantity * productToPay.price;
+    return total;
+  }, 0);
 
-
-  
   return (
     <CartStyled>
-      <DarkBox> <Total total={totalToPay}/></DarkBox> 
+      <DarkBox>
+        {" "}
+        <Total total={totalToPay} />
+      </DarkBox>
 
-      <MainCart />
-
-      <DarkBox><Footer /></DarkBox>
-            
+      <MainCart/>
+      <DarkBox>
+        <Footer />
+      </DarkBox>
     </CartStyled>
   );
 };
