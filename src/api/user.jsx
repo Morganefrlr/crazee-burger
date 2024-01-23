@@ -1,14 +1,13 @@
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "./firebase-config"
-import { fakeMenu1, fakeMenu2 } from "../utils/Data"
+import { fakeMenu2 } from "../utils/Data"
 
-export const getUser = async (idUser) => {
-    const docRef = doc(db, "users" , idUser)
-    
-    
+export const getUser = async (userId) => {
+    const docRef = doc(db, "users" , userId)
    const resultat = await getDoc(docRef)
     if(resultat.exists()){
         const user = resultat.data()
+        return user
     }
 }
 
@@ -21,4 +20,14 @@ export const createUser = (userId) =>{
         menu:fakeMenu2,
     }
     setDoc(docRef, newDoc)
+}
+
+
+
+export const authUser = async (userId) =>{
+    const createdUser = await getUser(userId)
+
+    if(!createdUser){
+        createUser(userId)
+    }
 }
