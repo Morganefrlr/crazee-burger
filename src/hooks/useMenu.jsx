@@ -2,16 +2,18 @@ import { useRef, useState } from "react";
 import { fakeMenu2 } from "../utils/Data";
 import { deepCloneArray } from "../utils/array";
 import { EMPTY_PRODUCT } from "../enums/product";
+import { syncBothMenus } from "../api/product";
 
 export const useMenu = () => {
   const [menuData, setMenuData] = useState(fakeMenu2);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const inputTitleRef = useRef();
 
-  const handleAdd = (newProduct) => {
+  const handleAdd = (newProduct, username) => {
     const menuClone = deepCloneArray(menuData);
     const menuUpdated = [newProduct, ...menuClone];
     setMenuData(menuUpdated);
+    syncBothMenus(username, menuUpdated)
   };
 
   const handleDelete = (idToDelete) => {

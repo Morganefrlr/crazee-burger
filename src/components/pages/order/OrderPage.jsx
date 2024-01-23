@@ -10,11 +10,11 @@ import { useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
-import { getUser } from "../../../api/user";
+
 
 const OrderPage = () => {
   const params = useParams();
-  const name = params.id;
+  const username = params.id;
 
   const [adminMode, setAdminMode] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -38,6 +38,7 @@ const OrderPage = () => {
   const{cart, handleAddProductCart,handleDeleteProductInCart} = useCart()
 
   const adminProviderValue = {
+    username,
     adminMode,
     setAdminMode,
     isCollapsed,
@@ -74,7 +75,7 @@ const OrderPage = () => {
   return (
     <OrderMainStyled>
       <AdminContext.Provider value={adminProviderValue}>
-        <Navbar name={name} />
+        <Navbar name={username} />
         <Main />
         <ToastContainer position="bottom-right" theme="dark" autoClose={1500} />
       </AdminContext.Provider>
