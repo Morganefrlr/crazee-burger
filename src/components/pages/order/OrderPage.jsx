@@ -6,11 +6,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
 import AdminContext from "../../../context/AdminContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
-
+import { getMenu } from "../../../api/product";
+import { getUser } from "../../../api/user";
 
 const OrderPage = () => {
   const params = useParams();
@@ -21,7 +22,6 @@ const OrderPage = () => {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [tabSelected, setTabSelected] = useState("add");
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
-
 
   const {
     menuData,
@@ -35,7 +35,7 @@ const OrderPage = () => {
     inputTitleRef,
   } = useMenu();
 
-  const{cart, handleAddProductCart,handleDeleteProductInCart} = useCart()
+  const { cart, handleAddProductCart, handleDeleteProductInCart } = useCart();
 
   const adminProviderValue = {
     username,
@@ -60,15 +60,18 @@ const OrderPage = () => {
     inputTitleRef,
     cart,
     handleAddProductCart,
-    handleDeleteProductInCart
+    handleDeleteProductInCart,
   };
 
   ///////////////////////////////////////////////
-
-
-
-
-
+const initializeMenu = async () => {
+  const menuRecu = await getMenu(username);
+  
+  await setMenuData(menuRecu.menu)
+}
+  useEffect(() => {
+    initializeMenu()
+  }, []);
 
 
 

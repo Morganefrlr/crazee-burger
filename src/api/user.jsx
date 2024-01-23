@@ -20,6 +20,7 @@ export const createUser = (userId) =>{
         menu:fakeMenu2,
     }
     setDoc(docRef, newDoc)
+
 }
 
 

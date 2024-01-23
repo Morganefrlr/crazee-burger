@@ -46,8 +46,8 @@ const Menu = () => {
   };
 
   return (
-    <MenuStyled className={menuData.length === 0 ? "emptyMenu" : ""}>
-      {menuData.map((item) => (
+    <MenuStyled className={menuData.length === undefined ? "emptyMenu" : ""}>
+      {menuData && menuData.map((item) => (
         <Card
           key={item.id}
           img={item.imageSource}
@@ -61,7 +61,7 @@ const Menu = () => {
           handleCart={SendToCart}
         />
       ))}
-      {menuData.length === 0 && <EmptyMenu />}
+      {menuData.length === undefined && <EmptyMenu />}
     </MenuStyled>
   );
 };
