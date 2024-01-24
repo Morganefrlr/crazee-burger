@@ -35,7 +35,7 @@ const EmptyMenuStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 80vh;
   align-items: center;
   justify-content: center;
   gap: 21px;

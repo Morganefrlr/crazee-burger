@@ -64,7 +64,7 @@ const Menu = () => {
           handleCart={SendToCart}
         />
       ))}
-      {menuData.length === undefined && <EmptyMenu />}
+      {menuData.length === 0 && <EmptyMenu />}
     </MenuStyled>
   );
 };
