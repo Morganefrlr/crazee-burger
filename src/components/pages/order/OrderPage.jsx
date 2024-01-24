@@ -13,6 +13,7 @@ import { useCart } from "../../../hooks/useCart";
 import { getMenu } from "../../../api/product";
 import { fakeMenu2 } from "../../../utils/Data";
 import { getLocalStorage } from "../../../utils/localStorage";
+import { initialiseUserSession } from "./helper/initialiseUserSession";
 
 const OrderPage = () => {
   const params = useParams();
@@ -66,26 +67,10 @@ const OrderPage = () => {
   };
 
   ///////////////////////////////////////////////
-const initializeMenu = async () => {
-  const menuReceived = await getMenu(username);
-  setMenuData(menuReceived)
-  if(!menuReceived){
-  setMenuData(fakeMenu2)
-  }
-}
 
-
-const initializeCart = async () => {
-  const cartReceived = getLocalStorage(username);
-  setCart(cartReceived)
-
-}
-  useEffect(() => {
-    initializeMenu()
-  }, []);
 
   useEffect(() => {
-    //initializeCart()
+    initialiseUserSession(username, setMenuData, setCart)
   }, []);
 
 
