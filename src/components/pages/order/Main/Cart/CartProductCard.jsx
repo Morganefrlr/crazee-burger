@@ -6,11 +6,12 @@ import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
 
 const CartProductCard = ({ product }) => {
-  const {handleDeleteProductInCart} = useContext(AdminContext)
+  const { username, handleDeleteProductInCart} = useContext(AdminContext)
+
 
   const handleDelete = (idToDelete) =>{
     
-    handleDeleteProductInCart(idToDelete)
+    handleDeleteProductInCart(idToDelete, username)
   }
   return (
     <CartProductCardStyled>

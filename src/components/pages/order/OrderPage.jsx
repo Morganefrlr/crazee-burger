@@ -85,7 +85,7 @@ const initializeCart = async () => {
   }, []);
 
   useEffect(() => {
-    initializeCart()
+    //initializeCart()
   }, []);
 
 

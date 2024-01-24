@@ -24,7 +24,7 @@ const Menu = () => {
   const handleDeleteProduct = (e, idToDelete) => {
     e.stopPropagation()
     handleDelete(idToDelete, username);
-    handleDeleteProductInCart(idToDelete)
+    handleDeleteProductInCart(idToDelete, username)
   };
 
   const handleSelectedProduct = async (idToEdit) => {

@@ -32,11 +32,12 @@ export const useCart = () => {
 
 
 
-  const handleDeleteProductInCart = (idToDelete) => {
+  const handleDeleteProductInCart = (idToDelete, username) => {
     const cartClone = deepCloneArray(cart);
     const cartUpdated = cartClone.filter((el) => el.id !== idToDelete)
 
     setCart(cartUpdated)
+    setLocalStorage(username, cartUpdated)
   }
   return { cart,setCart, handleAddProductCart,handleDeleteProductInCart };
 };
