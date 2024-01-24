@@ -12,6 +12,7 @@ import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
 import { getMenu } from "../../../api/product";
 import { getUser } from "../../../api/user";
+import { fakeMenu2 } from "../../../utils/Data";
 
 const OrderPage = () => {
   const params = useParams();
@@ -66,8 +67,10 @@ const OrderPage = () => {
   ///////////////////////////////////////////////
 const initializeMenu = async () => {
   const menuRecu = await getMenu(username);
-  console.log(menuRecu)
   setMenuData(menuRecu)
+  if(!menuRecu){
+  setMenuData(fakeMenu2)
+  }
 }
   useEffect(() => {
     initializeMenu()

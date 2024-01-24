@@ -19,7 +19,7 @@ export const getMenu = async (userId) => {
 
     if(resultat.exists()){
         const {menu} = resultat.data()
-        console.log(menu)
+        
         return menu
     }
 }

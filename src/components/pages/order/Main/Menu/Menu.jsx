@@ -8,6 +8,7 @@ import Loader from "./Loader";
 
 const Menu = () => {
   const {
+    username,
     menuData,
     handleDelete,
     setIsCollapsed,
@@ -22,7 +23,7 @@ const Menu = () => {
 
   const handleDeleteProduct = (e, idToDelete) => {
     e.stopPropagation()
-    handleDelete(idToDelete);
+    handleDelete(idToDelete, username);
     handleDeleteProductInCart(idToDelete)
   };
 
