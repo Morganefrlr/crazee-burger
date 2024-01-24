@@ -33,8 +33,9 @@ export const useMenu = () => {
     setMenuData(menuClone);
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = (username) => {
     setMenuData(fakeMenu2);
+    syncBothMenus(username, fakeMenu2)
   };
 
   return {
