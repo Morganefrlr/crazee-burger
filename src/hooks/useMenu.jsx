@@ -24,13 +24,14 @@ export const useMenu = () => {
     idToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT);
   };
 
-  const handleEdit = (productToEdit) => {
+  const handleEdit = (productToEdit, username) => {
     const menuClone = deepCloneArray(menuData);
     const indexProduct = menuClone.findIndex(
       (el) => el.id === productToEdit.id
     );
     menuClone[indexProduct] = productToEdit;
     setMenuData(menuClone);
+    syncBothMenus(username, menuClone)
   };
 
   const handleGenerate = (username) => {
