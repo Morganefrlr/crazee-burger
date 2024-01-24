@@ -4,6 +4,7 @@ import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
 import { findInArray } from "../../../../../utils/array";
+import Loader from "./Loader";
 
 const Menu = () => {
   const {
@@ -45,6 +46,7 @@ const Menu = () => {
     handleAddProductCart(productToCart)
   };
 
+  if(menuData === undefined) return <Loader />
   return (
     <MenuStyled className={menuData.length === undefined ? "emptyMenu" : ""}>
       {menuData && menuData.map((item) => (

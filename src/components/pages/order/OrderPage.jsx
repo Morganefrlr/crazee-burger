@@ -66,8 +66,8 @@ const OrderPage = () => {
   ///////////////////////////////////////////////
 const initializeMenu = async () => {
   const menuRecu = await getMenu(username);
-  
-  await setMenuData(menuRecu.menu)
+  console.log(menuRecu)
+  setMenuData(menuRecu)
 }
   useEffect(() => {
     initializeMenu()

@@ -18,8 +18,8 @@ export const getMenu = async (userId) => {
     const resultat = await getDoc(docRef)
 
     if(resultat.exists()){
-        const menu = resultat.data()
-    
+        const {menu} = resultat.data()
+        console.log(menu)
         return menu
     }
 }
