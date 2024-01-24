@@ -11,8 +11,8 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
 import { getMenu } from "../../../api/product";
-import { getUser } from "../../../api/user";
 import { fakeMenu2 } from "../../../utils/Data";
+import { getLocalStorage } from "../../../utils/localStorage";
 
 const OrderPage = () => {
   const params = useParams();
@@ -36,7 +36,7 @@ const OrderPage = () => {
     inputTitleRef,
   } = useMenu();
 
-  const { cart, handleAddProductCart, handleDeleteProductInCart } = useCart();
+  const { cart, setCart,  handleAddProductCart, handleDeleteProductInCart } = useCart();
 
   const adminProviderValue = {
     username,
@@ -60,20 +60,32 @@ const OrderPage = () => {
     handleEdit,
     inputTitleRef,
     cart,
+    setCart,
     handleAddProductCart,
     handleDeleteProductInCart,
   };
 
   ///////////////////////////////////////////////
 const initializeMenu = async () => {
-  const menuRecu = await getMenu(username);
-  setMenuData(menuRecu)
-  if(!menuRecu){
+  const menuReceived = await getMenu(username);
+  setMenuData(menuReceived)
+  if(!menuReceived){
   setMenuData(fakeMenu2)
   }
 }
+
+
+const initializeCart = async () => {
+  const cartReceived = getLocalStorage(username);
+  setCart(cartReceived)
+
+}
   useEffect(() => {
     initializeMenu()
+  }, []);
+
+  useEffect(() => {
+    initializeCart()
   }, []);
 
 

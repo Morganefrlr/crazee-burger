@@ -44,7 +44,7 @@ const Menu = () => {
   const SendToCart = (e,idToCart) => {
     e.stopPropagation();
     const productToCart = findInArray(idToCart, menuData)
-    handleAddProductCart(productToCart)
+    handleAddProductCart(productToCart,username)
   };
 
   if(menuData === undefined) return <Loader />

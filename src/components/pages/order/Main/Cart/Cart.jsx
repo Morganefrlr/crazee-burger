@@ -8,25 +8,27 @@ import MainCart from "./MainCart";
 import AdminContext from "../../../../../context/AdminContext";
 
 const Cart = () => {
-  const {cart} = useContext(AdminContext)
-
-
+  const { cart, menuData } = useContext(AdminContext);
 
   const totalToPay = cart.reduce((total, productToPay) => {
-    total += productToPay.quantity * productToPay.price
-    return total
-  },0)
+    total += productToPay.quantity * productToPay.price;
+    return total;
+  }, 0);
 
+  //if (menuData === undefined) return <span>Chargement......</span>;
 
-  
   return (
     <CartStyled>
-      <DarkBox> <Total total={totalToPay}/></DarkBox> 
+      <DarkBox>
+        {" "}
+        <Total total={totalToPay} />
+      </DarkBox>
 
       <MainCart />
 
-      <DarkBox><Footer /></DarkBox>
-            
+      <DarkBox>
+        <Footer />
+      </DarkBox>
     </CartStyled>
   );
 };
