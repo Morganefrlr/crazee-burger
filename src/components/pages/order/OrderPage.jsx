@@ -10,9 +10,6 @@ import { useEffect, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
-import { getMenu } from "../../../api/product";
-import { fakeMenu2 } from "../../../utils/Data";
-import { getLocalStorage } from "../../../utils/localStorage";
 import { initialiseUserSession } from "./helper/initialiseUserSession";
 
 const OrderPage = () => {

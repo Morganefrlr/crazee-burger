@@ -7,7 +7,7 @@ import { getLocalStorage } from "../../../../utils/localStorage";
 
 
 
-const initializeMenu = async () => {
+const initializeMenu = async (username, setMenuData) => {
     const menuReceived = await getMenu(username);
     setMenuData(menuReceived)
     if(!menuReceived){
@@ -17,7 +17,7 @@ const initializeMenu = async () => {
 }
   
   
-const initializeCart = async () => {
+const initializeCart = async (username,setCart) => {
     const cartReceived = getLocalStorage(username);
     setCart(cartReceived)
   
