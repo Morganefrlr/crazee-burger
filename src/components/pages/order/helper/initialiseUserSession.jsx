@@ -18,8 +18,8 @@ const initializeMenu = async (username, setMenuData) => {
   
   
 const initializeCart = async (username,setCart) => {
-    const cartReceived = getLocalStorage(username);
-    setCart(cartReceived)
+    const cartReceived = getLocalStorage(username)
+   if(cartReceived) return setCart(cartReceived)
   
 }
 

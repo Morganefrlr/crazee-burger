@@ -9,6 +9,7 @@ import AdminContext from "../../../../../context/AdminContext";
 const Cart = () => {
   const { cart} = useContext(AdminContext);
 
+  
   const totalToPay = cart.reduce((total, productToPay) => {
     total += productToPay.quantity * productToPay.price;
     return total;
