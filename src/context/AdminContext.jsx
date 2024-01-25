@@ -37,4 +37,5 @@ export default createContext({
 
   handleAddProductCart: () =>{},
   handleDeleteProductInCart: () => {},
+  handleEditProductInCart: () => {},
 });
