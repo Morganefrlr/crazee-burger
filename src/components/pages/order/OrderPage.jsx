@@ -6,21 +6,24 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "./Main/Main";
 import AdminContext from "../../../context/AdminContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
+import { getMenu } from "../../../api/product";
+import { fakeMenu2 } from "../../../utils/Data";
+import { getLocalStorage } from "../../../utils/localStorage";
+import { initialiseUserSession } from "./helper/initialiseUserSession";
 
 const OrderPage = () => {
   const params = useParams();
-  const name = params.id;
+  const username = params.id;
 
   const [adminMode, setAdminMode] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [tabSelected, setTabSelected] = useState("add");
   const [addMenuInputsValue, setAddMenuInputsValue] = useState("");
-
 
   const {
     menuData,
@@ -34,9 +37,10 @@ const OrderPage = () => {
     inputTitleRef,
   } = useMenu();
 
-  const{cart, handleAddProductCart,handleDeleteProductInCart,handleEditProductInCart} = useCart()
+  const { cart, setCart,  handleAddProductCart, handleDeleteProductInCart } = useCart();
 
   const adminProviderValue = {
+    username,
     adminMode,
     setAdminMode,
     isCollapsed,
@@ -57,17 +61,24 @@ const OrderPage = () => {
     handleEdit,
     inputTitleRef,
     cart,
+    setCart,
     handleAddProductCart,
     handleDeleteProductInCart,
-    handleEditProductInCart
   };
 
   ///////////////////////////////////////////////
 
+
+  useEffect(() => {
+    initialiseUserSession(username, setMenuData, setCart)
+  }, []);
+
+
+
   return (
     <OrderMainStyled>
       <AdminContext.Provider value={adminProviderValue}>
-        <Navbar name={name} />
+        <Navbar name={username} />
         <Main />
         <ToastContainer position="bottom-right" theme="dark" autoClose={1500} />
       </AdminContext.Provider>

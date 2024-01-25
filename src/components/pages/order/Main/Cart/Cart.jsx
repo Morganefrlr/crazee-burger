@@ -6,18 +6,16 @@ import Total from "./Total";
 import Footer from "./Footer";
 import MainCart from "./MainCart";
 import AdminContext from "../../../../../context/AdminContext";
-import { findInArray } from "../../../../../utils/array";
 
 const Cart = () => {
-  const {
-    cart
-  } = useContext(AdminContext);
+  const { cart, menuData } = useContext(AdminContext);
 
   const totalToPay = cart.reduce((total, productToPay) => {
-    if(isNaN(productToPay.price)) return total
     total += productToPay.quantity * productToPay.price;
     return total;
   }, 0);
+
+  //if (menuData === undefined) return <span>Chargement......</span>;
 
   return (
     <CartStyled>
@@ -26,7 +24,8 @@ const Cart = () => {
         <Total total={totalToPay} />
       </DarkBox>
 
-      <MainCart/>
+      <MainCart />
+
       <DarkBox>
         <Footer />
       </DarkBox>

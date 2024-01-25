@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 import { deepCloneArray, findInArray, findIndexInArray } from "../utils/array";
+import { setLocalStorage } from "../utils/localStorage";
 
 
 export const useCart = () => {
   const [cart, setCart] = useState([]);
 
-  const handleAddProductCart = (productToCart) => {
+  const handleAddProductCart = (productToCart, username) => {
     const cartClone = deepCloneArray(cart);
 
     const isProductAlreadyInCart = findInArray(productToCart.id, cartClone);
@@ -15,37 +16,28 @@ export const useCart = () => {
         ...productToCart,
         quantity: 1,
       };
-      setCart([productToAdd, ...cart]);
+      const newCart = [productToAdd, ...cart]
+      setCart(newCart);
+      setLocalStorage(username, newCart)
       return
     }
     if (isProductAlreadyInCart) {
       const IndexProduct = findIndexInArray(productToCart.id, cartClone);
       cartClone[IndexProduct].quantity += 1;
       setCart(cartClone);
+      setLocalStorage(username, cartClone)
     }
   };
 
 
 
 
-  const handleDeleteProductInCart = (idToDelete) => {
+  const handleDeleteProductInCart = (idToDelete, username) => {
     const cartClone = deepCloneArray(cart);
     const cartUpdated = cartClone.filter((el) => el.id !== idToDelete)
 
     setCart(cartUpdated)
+    setLocalStorage(username, cartUpdated)
   }
-
-
-
-  const handleEditProductInCart = (productToEdit) =>{
-    const cartClone = deepCloneArray(cart);
-    const IndexProduct = findIndexInArray(productToEdit.id, cartClone)
-    cartClone[IndexProduct] = {
-      ...productToEdit,
-      quantity: cart[IndexProduct].quantity
-    };
-
-    setCart(cartClone);
-  }
-  return { cart, handleAddProductCart,handleDeleteProductInCart,handleEditProductInCart };
+  return { cart,setCart, handleAddProductCart,handleDeleteProductInCart };
 };

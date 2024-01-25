@@ -7,7 +7,7 @@ import MessageSuccess from "./MessageSuccess";
 import ButtonComponent from "../../../../../reusable/ButtonComponent";
 
 const AddProduct = () => {
-  const { handleAdd, newProduct, setNewProduct } = useContext(AdminContext);
+  const { handleAdd, newProduct, setNewProduct,username } = useContext(AdminContext);
   const [messageSucces, setMessageSucces] = useState(false);
 
   const inputTexts = getInputTextsConfig(newProduct);
@@ -33,7 +33,7 @@ const AddProduct = () => {
       ...newProduct,
       id: crypto.randomUUID(),
     };
-    handleAdd(productToAdd);
+    handleAdd(productToAdd, username);
     setNewProduct(EMPTY_PRODUCT);
     displaySuccessMessage();
   };

@@ -1,24 +1,25 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Price from "../Menu/Price";
 import { MdDeleteForever } from "react-icons/md";
+import { useContext } from "react";
+import AdminContext from "../../../../../context/AdminContext";
+
+const CartProductCard = ({ product }) => {
+  const { username, handleDeleteProductInCart} = useContext(AdminContext)
 
 
-const CartProductCard = ({ product,handleSelect, isSelected, isModeAdmin, handleDelete}) => {
-
-
-
-
-
-
-
+  const handleDelete = (idToDelete) =>{
+    
+    handleDeleteProductInCart(idToDelete, username)
+  }
   return (
-    <CartProductCardStyled onClick={handleSelect} isSelected={isSelected} isModeAdmin={isModeAdmin}>
+    <CartProductCardStyled>
       <img src={product.imageSource} alt="" />
 
       <div className="infosProductCart">
         <span>{product.title}</span>
-        <Price price={product.price} className="priceCard"/>
+        <Price price={product.price} />
       </div>
 
       <div className="quantityProductCart">
@@ -26,10 +27,7 @@ const CartProductCard = ({ product,handleSelect, isSelected, isModeAdmin, handle
       </div>
 
       <div className="deleteProductCard">
-        <MdDeleteForever
-          className="icon"
-          onClick={handleDelete}
-        />
+        <MdDeleteForever className="icon" onClick={() => handleDelete(product.id)}/>
       </div>
     </CartProductCardStyled>
   );
@@ -46,8 +44,8 @@ const CartProductCardStyled = styled.div`
   gap: 10%;
   align-items: center;
   position: relative;
+
   padding: 8px 16px;
-  cursor: ${({isModeAdmin}) =>(isModeAdmin ? "pointer" : "")};
 
   img {
     object-fit: contain;
@@ -104,16 +102,20 @@ const CartProductCardStyled = styled.div`
         fill: ${theme.colors.white};
         width: 24px;
         height: 24px;
+    
+
       }
-      &:hover {
-        .icon {
+&:hover{
+  .icon{
           fill: ${theme.colors.dark};
         }
-      }
-      &:active {
-        .icon {
+}
+      &:active{
+        .icon{
           fill: ${theme.colors.white};
         }
+        
+
       }
     }
   }
@@ -121,18 +123,5 @@ const CartProductCardStyled = styled.div`
   .deleteProductCard {
     display: none;
   }
-
-  ${({ isSelected }) => isSelected && selectedStyle}
 `;
-
-
-
-const selectedStyle = css`
-  background: ${theme.colors.primary};
-  .priceCard, .quantityProductCart span {
-    color: ${theme.colors.white};
-  }
-  
-`;
-
 export default CartProductCard;

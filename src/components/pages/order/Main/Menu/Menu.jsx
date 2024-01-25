@@ -4,9 +4,11 @@ import Card from "./Card";
 import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
 import { findInArray } from "../../../../../utils/array";
+import Loader from "./Loader";
 
 const Menu = () => {
   const {
+    username,
     menuData,
     handleDelete,
     setIsCollapsed,
@@ -16,13 +18,13 @@ const Menu = () => {
     adminMode,
     inputTitleRef,
     handleAddProductCart,
-    handleDeleteProductInCart,
+    handleDeleteProductInCart
   } = useContext(AdminContext);
 
   const handleDeleteProduct = (e, idToDelete) => {
-    e.stopPropagation();
-    handleDelete(idToDelete);
-    handleDeleteProductInCart(idToDelete);
+    e.stopPropagation()
+    handleDelete(idToDelete, username);
+    handleDeleteProductInCart(idToDelete, username)
   };
 
   const handleSelectedProduct = async (idToEdit) => {
@@ -30,9 +32,8 @@ const Menu = () => {
     await setTabSelected("edit");
     const productToEdit = findInArray(idToEdit, menuData);
     await setProductSelected(productToEdit);
-    if (adminMode) {
-      inputTitleRef.current.focus();
-    }
+
+    inputTitleRef.current.focus();
   };
 
   const checkIfSelected = (idSelected, idToCheck) => {
@@ -40,15 +41,16 @@ const Menu = () => {
     return idSelected === idToCheck;
   };
 
-  const SendToCart = (e, idToCart) => {
+  const SendToCart = (e,idToCart) => {
     e.stopPropagation();
-    const productToCart = findInArray(idToCart, menuData);
-    handleAddProductCart(productToCart);
+    const productToCart = findInArray(idToCart, menuData)
+    handleAddProductCart(productToCart,username)
   };
 
+  if(menuData === undefined) return <Loader />
   return (
-    <MenuStyled className={menuData.length === 0 ? "emptyMenu" : ""}>
-      {menuData.map((item) => (
+    <MenuStyled className={menuData.length === undefined ? "emptyMenu" : ""}>
+      {menuData && menuData.map((item) => (
         <Card
           key={item.id}
           img={item.imageSource}

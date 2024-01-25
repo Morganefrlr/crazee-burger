@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 
 const EmptyMenu = () => {
-  const { adminMode, handleGenerate } = useContext(AdminContext);
+  const { adminMode,username, handleGenerate } = useContext(AdminContext);
 
   return (
     <EmptyMenuStyled>
@@ -16,7 +16,7 @@ const EmptyMenu = () => {
           <ButtonComponent
             label={"Générer de nouveaux produits"}
             version="normal"
-            onClick={handleGenerate}
+            onClick={() => handleGenerate(username)}
           />
         </>
       ):
@@ -35,7 +35,7 @@ const EmptyMenuStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 80vh;
   align-items: center;
   justify-content: center;
   gap: 21px;
