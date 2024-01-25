@@ -6,13 +6,10 @@ import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
 
 const CartProductCard = ({ product }) => {
-  
-  const { username, handleDeleteProductInCart} = useContext(AdminContext)
-  const handleDelete = (idToDelete) =>{
-    handleDeleteProductInCart(idToDelete, username)
-  }
-
-
+  const { username, handleDeleteProductInCart } = useContext(AdminContext);
+  const handleDelete = (idToDelete) => {
+    handleDeleteProductInCart(idToDelete, username);
+  };
 
   return (
     <CartProductCardStyled>
@@ -28,7 +25,10 @@ const CartProductCard = ({ product }) => {
       </div>
 
       <div className="deleteProductCard">
-        <MdDeleteForever className="icon" onClick={() => handleDelete(product.id)}/>
+        <MdDeleteForever
+          className="icon"
+          onClick={() => handleDelete(product.id)}
+        />
       </div>
     </CartProductCardStyled>
   );
@@ -45,7 +45,7 @@ const CartProductCardStyled = styled.div`
   gap: 10%;
   align-items: center;
   position: relative;
-
+  margin: 20px;
   padding: 8px 16px;
 
   img {
@@ -103,20 +103,16 @@ const CartProductCardStyled = styled.div`
         fill: ${theme.colors.white};
         width: 24px;
         height: 24px;
-    
-
       }
-&:hover{
-  .icon{
+      &:hover {
+        .icon {
           fill: ${theme.colors.dark};
         }
-}
-      &:active{
-        .icon{
+      }
+      &:active {
+        .icon {
           fill: ${theme.colors.white};
         }
-        
-
       }
     }
   }

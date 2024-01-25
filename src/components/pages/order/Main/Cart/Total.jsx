@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/math";
+import CasinoEffect from "../../../../reusable/CasinoEffect";
 
 const Total = ({total}) => {
   return (
     <TotalStyled>
       <span>Total</span>
-      <span>{formatPrice(total)}</span>
+      <CasinoEffect count={formatPrice(total)} />
     </TotalStyled>
   );
 };
