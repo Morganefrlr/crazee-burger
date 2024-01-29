@@ -80,6 +80,8 @@ margin: 20px;
     width: 20%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
     span {
       font-size: 15px;
       color: ${theme.colors.primary};
