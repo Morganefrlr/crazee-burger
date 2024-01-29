@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/math";
+import CasinoEffect from "../../../../reusable/CasinoEffect";
 
 const Total = ({total}) => {
   return (
     <TotalStyled>
       <span>Total</span>
-      <span>{formatPrice(total)}</span>
+      <CasinoEffect count={formatPrice(total)} />
     </TotalStyled>
   );
 };
@@ -19,9 +20,7 @@ const TotalStyled = styled.div`
     font-size: 36px;
     color: ${theme.colors.primary};
     padding: 0 16px;
-    &:nth-child(2) {
-      font-weight: 700;
-    }
+    flex: 1.5;
   }
 `;
 export default Total;

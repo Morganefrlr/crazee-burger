@@ -4,22 +4,31 @@ import Admin from "./Admin/Admin";
 import { useContext } from "react";
 import AdminContext from "../../../../context/AdminContext";
 import Cart from "./Cart/Cart";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { adminPanelAnim } from "../../../../theme/animation";
 
 const Main = () => {
-  const {adminMode} = useContext(AdminContext)
+  const { adminMode } = useContext(AdminContext);
   return (
     <MainStyled>
       <div className="cart">
-        <Cart/>
+        <Cart />
       </div>
       <div className="container_MenuAdmin">
         <Menu />
-        {adminMode && <Admin/>}
+        {adminMode && (
+          <TransitionGroup>
+            <CSSTransition appear classNames="adminTransition" timeout={300}>
+              <Admin />
+            </CSSTransition>
+          </TransitionGroup>
+        )}
       </div>
-      
     </MainStyled>
   );
 };
+
+
 
 const MainStyled = styled.div`
   width: 1400px;
@@ -33,22 +42,17 @@ const MainStyled = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  .container_MenuAdmin{
+  .container_MenuAdmin {
     display: flex;
     flex-direction: column;
     width: 100%;
     position: relative;
+
+    ${adminPanelAnim}
   }
 
-
-
-
-
-
-
-  
-  .cart{
-    display: flex,
+  .cart {
+    display: flex;
   }
 `;
 

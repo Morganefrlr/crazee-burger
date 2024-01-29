@@ -1,22 +1,37 @@
 import React from "react";
 import CartProductCard from "./CartProductCard";
 import styled from "styled-components";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { cartAnimation } from "../../../../../theme/animation";
 
-const CartProducts = ({ products, handleSelect,isSelected, productSelected, isModeAdmin, handleDelete}) => {
-
-
-
+const CartProducts = ({
+  products,
+  handleSelect,
+  isSelected,
+  productSelected,
+  isModeAdmin,
+  handleDelete,
+}) => {
   return (
     <CartProductsStyled>
-      {products.map((item) => (
-        <CartProductCard key={item.id} 
-        product={item} 
-        handleSelect={() => handleSelect(item.id)}
-        isSelected={isSelected(productSelected.id, item.id)}
-        isModeAdmin={isModeAdmin}
-        handleDelete={() => handleDelete(item.id)}
-        />
-      ))}
+      <TransitionGroup>
+        {products.map((item) => (
+          <CSSTransition
+            classNames={"transitionCard"}
+            appear={true}
+            key={item.id}
+            timeout={{ enter: 500, exit: 500 }}
+          >
+            <CartProductCard
+              product={item}
+              handleSelect={() => handleSelect(item.id)}
+              isSelected={isSelected(productSelected.id, item.id)}
+              isModeAdmin={isModeAdmin}
+              handleDelete={() => handleDelete(item.id)}
+            />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </CartProductsStyled>
   );
 };
@@ -24,8 +39,7 @@ const CartProducts = ({ products, handleSelect,isSelected, productSelected, isMo
 const CartProductsStyled = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px 0;
 
+  ${cartAnimation}
 `;
 export default CartProducts;

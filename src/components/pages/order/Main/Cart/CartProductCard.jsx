@@ -4,6 +4,7 @@ import Price from "../Menu/Price";
 import { MdDeleteForever } from "react-icons/md";
 import { useContext } from "react";
 import AdminContext from "../../../../../context/AdminContext";
+import CasinoEffect from "../../../../reusable/CasinoEffect";
 
 const CartProductCard = ({ product }) => {
   
@@ -24,7 +25,8 @@ const CartProductCard = ({ product }) => {
       </div>
 
       <div className="quantityProductCart">
-        <span>x {product.quantity}</span>
+        <span>x </span>
+        <CasinoEffect count={product.quantity}/>
       </div>
 
       <div className="deleteProductCard">
@@ -45,7 +47,7 @@ const CartProductCardStyled = styled.div`
   gap: 10%;
   align-items: center;
   position: relative;
-
+margin: 20px;
   padding: 8px 16px;
 
   img {
@@ -78,6 +80,8 @@ const CartProductCardStyled = styled.div`
     width: 20%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
     span {
       font-size: 15px;
       color: ${theme.colors.primary};

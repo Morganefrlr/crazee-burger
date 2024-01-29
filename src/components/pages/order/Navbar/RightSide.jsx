@@ -16,7 +16,7 @@ const RightSide = ({ name }) => {
       toast.info("Mode admin activé", {
         closeOnClick: true,
       });
-      setIsCollapsed(true)
+      //setIsCollapsed(true)
       setAdminMode(true)
     } else{
       setAdminMode(false)
