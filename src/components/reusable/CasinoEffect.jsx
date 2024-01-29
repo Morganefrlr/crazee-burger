@@ -1,5 +1,6 @@
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
+import { casinoEffectAnimation } from "../../theme/animation";
 
 const CasinoEffect = ({ count }) => {
   return (
@@ -22,24 +23,6 @@ const CasinoEffectStyled = styled.div`
   span {
     display: inline-block;
   }
-  .transitionCasino-enter {
-    transform: translateY(100%);
-  }
-  .transitionCasino-enter-active {
-    transform: translateY(0);
-    transition: 300ms;
-  }
-
-
-  .transitionCasino-exit {
-    transform: translateY(0);
-    position: absolute;
-    left: 0;
-    bottom: 0;
-  }
-  .transitionCasino-exit-active {
-    transform: translateY(-100%);
-    transition: 300ms;
-  }
+  ${casinoEffectAnimation}
 
 `;

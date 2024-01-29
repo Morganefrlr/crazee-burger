@@ -46,3 +46,56 @@ export const menuAnimation = css`
     }
   }
 `;
+
+export const cartAnimation = css`
+  .transitionCard-appear {
+    transform: translateX(100px);
+    opacity: 0%;
+    &.transitionCard-appear-active {
+      transition: 0.5s;
+      transform: translateX(0px);
+      opacity: 100%;
+    }
+  }
+
+  .transitionCard-enter {
+    transform: translateX(100px);
+    opacity: 0%;
+    &.transitionCard-enter-active {
+      transition: 0.5s;
+      transform: translateX(0px);
+      opacity: 100%;
+    }
+  }
+
+  .transitionCard-exit {
+    transition: 0.5s;
+    transform: translateX(0px);
+    opacity: 100%;
+    &.transitionCard-exit-active {
+      transform: translateX(-100px);
+      opacity: 0%;
+    }
+  }
+`;
+
+export const casinoEffectAnimation = css`
+  .transitionCasino-enter {
+    transform: translateY(100%);
+    &.transitionCasino-enter-active {
+      transform: translateY(0);
+      transition: 300ms;
+    }
+  }
+
+  .transitionCasino-exit {
+    transform: translateY(0);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    &.transitionCasino-exit-active {
+      transform: translateY(-100%);
+      transition: 300ms;
+    
+  }}
+`;
