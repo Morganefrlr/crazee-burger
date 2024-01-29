@@ -5,6 +5,8 @@ import EmptyMenu from "./EmptyMenu";
 import AdminContext from "../../../../../context/AdminContext";
 import { findInArray } from "../../../../../utils/array";
 import Loader from "./Loader";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { menuAnimation } from "../../../../../theme/animation";
 
 const Menu = () => {
   const {
@@ -18,13 +20,13 @@ const Menu = () => {
     adminMode,
     inputTitleRef,
     handleAddProductCart,
-    handleDeleteProductInCart
+    handleDeleteProductInCart,
   } = useContext(AdminContext);
 
   const handleDeleteProduct = (e, idToDelete) => {
-    e.stopPropagation()
+    e.stopPropagation();
     handleDelete(idToDelete, username);
-    handleDeleteProductInCart(idToDelete, username)
+    handleDeleteProductInCart(idToDelete, username);
   };
 
   const handleSelectedProduct = async (idToEdit) => {
@@ -41,31 +43,36 @@ const Menu = () => {
     return idSelected === idToCheck;
   };
 
-  const SendToCart = (e,idToCart) => {
+  const SendToCart = (e, idToCart) => {
     e.stopPropagation();
-    const productToCart = findInArray(idToCart, menuData)
-    handleAddProductCart(productToCart,username)
+    const productToCart = findInArray(idToCart, menuData);
+    handleAddProductCart(productToCart, username);
   };
 
-  if(menuData === undefined) return <Loader />
+  if (menuData === undefined) return <Loader />;
   return (
-    <MenuStyled className={menuData.length === undefined ? "emptyMenu" : ""}>
-      {menuData && menuData.map((item) => (
-        <Card
-          key={item.id}
-          img={item.imageSource}
-          title={item.title}
-          price={item.price}
-          handleDelete={handleDeleteProduct}
-          handleSelect={() => handleSelectedProduct(item.id)}
-          id={item.id}
-          isHoverable={adminMode}
-          isSelected={checkIfSelected(productSelected.id, item.id)}
-          handleCart={SendToCart}
-        />
-      ))}
+    <TransitionGroup
+      component={MenuStyled}
+      className={menuData.length === undefined ? "emptyMenu" : ""}
+    >
+      {menuData &&
+        menuData.map((item) => (
+          <CSSTransition classNames='transitionCardMenu' timeout={300} key={item.id}>
+            <Card
+              img={item.imageSource}
+              title={item.title}
+              price={item.price}
+              handleDelete={handleDeleteProduct}
+              handleSelect={() => handleSelectedProduct(item.id)}
+              id={item.id}
+              isHoverable={adminMode}
+              isSelected={checkIfSelected(productSelected.id, item.id)}
+              handleCart={SendToCart}
+            />
+          </CSSTransition>
+        ))}
       {menuData.length === 0 && <EmptyMenu />}
-    </MenuStyled>
+    </TransitionGroup>
   );
 };
 
@@ -86,6 +93,8 @@ const MenuStyled = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  ${menuAnimation}
 `;
 
 export default Menu;
