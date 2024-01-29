@@ -18,7 +18,7 @@ const CasinoEffectStyled = styled.div`
 
   position: relative;
   overflow-y: hidden;
-  width: 120px;
+  flex: 1;
 
   span {
     display: inline-block;
