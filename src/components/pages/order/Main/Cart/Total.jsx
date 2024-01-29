@@ -20,9 +20,6 @@ const TotalStyled = styled.div`
     font-size: 36px;
     color: ${theme.colors.primary};
     padding: 0 16px;
-    &:nth-child(2) {
-      font-weight: 700;
-    }
   }
 `;
 export default Total;
